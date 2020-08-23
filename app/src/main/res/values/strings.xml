@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PodcastAssignment</string>
+    <string name="category_name">Arts Design</string>
+    <string name="podcast_title">Women in Technology Product hosted by Expresso Demonra</string>
+    <string name="categories">Categories</string>
+    <string name="your_shows">Your Shows</string>
+    <string name="welcome">Welcome</string>
+    <string name="no_data">It looks like you aren\'t enrolled in\n any podcasts, but it\'s easy to get\n       started.</string>
+    <string name="lbl_new">FIND SOMETHING NEW</string>
+    <string name="reload">RELOAD</string>
+    <string name="title_name">Listening english podcast everywhere with Espresso</string>
+    <string name="details">Everyone wants to make a difference in the world. Changing the World is a daunting task, but when we go on an international mission trip God can use that to change our world forever. Fellow travelers share real-life stories of radical transformation as a result of going on a mission trip. Find yourself right in the middle of a missions team being transformed by God. Receive practical resources as God uses missions to change your life.</string>
+    <string name="podcast">Podcast</string>
+    <string name="profile_fragment">Profile Fragment</string>
+</resources>

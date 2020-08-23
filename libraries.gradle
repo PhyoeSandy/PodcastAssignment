@@ -1,0 +1,56 @@
+ext {
+    glideVersion = "4.11.0"
+    roomVersion = "2.2.5"
+    materialVersion = "1.1.0"
+    lifeCycleVersion = "2.2.0"
+    imageSliderVersion = "1.3.9"
+    rxKotlinVersion = "2.4.0"
+    rxAndroidVersion = "2.1.1"
+    retrofitVersion = "2.6.1"
+    retrofitConverterVersion = "2.5.0"
+    retrofitRxJavaVersion = "2.6.1"
+    JunitVersion = "4.12"
+    KtxVersion = "1.2.0"
+    JunitKtxVersion = "1.1.1"
+    lutMockKVersion = "1.10.0"
+    lutMockitoVersion = "3.1.0"
+    lutRobolectricVersion = "4.3.1"
+    adtEspressoVersion = "3.2.0"
+    adtTestRuleVersion = "1.2.0"
+    adtTestRunnerVersion = "1.2.0"
+    adtExpressoContribVersion = "3.2.0"
+    adtMockitoAndroidVersion = "3.1.0"
+    adtJunitVersion = "1.1.1"
+    recyclerViewVersion = "1.1.0"
+
+
+    libraries = [
+            glide              : "com.github.bumptech.glide:glide:$glideVersion",
+            room               : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler       : "androidx.room:room-compiler:$roomVersion",
+            material           : "com.google.android.material:material:$materialVersion",
+            liveData           : "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion",
+            lifeCycle          : "android.arch.lifecycle:extensions:$lifeCycleVersion",
+            lifeCycleCompiler  : "android.arch.lifecycle:compiler:$lifeCycleVersion",
+            annotationProcessor: "androidx.lifecycle:lifecycle-compiler:$lifeCycleVersion",
+            imageSlider        : "com.github.smarteist:autoimageslider:$imageSliderVersion",
+            rxKotlin           : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
+            rxAndroid          : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            retrofit           : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverter  : "com.squareup.retrofit2:converter-gson:$retrofitConverterVersion",
+            retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava2:$retrofitRxJavaVersion",
+            Junit              : "junit:junit:$JunitVersion",
+            Ktx                : "androidx.test:core-ktx:$KtxVersion",
+            JunitKtx           : "androidx.test.ext:junit-ktx:$JunitKtxVersion",
+            lutMockk           : "io.mockk:mockk:$lutMockKVersion",
+            lutMockito         : "org.mockito:mockito-core:$lutMockitoVersion",
+            lutRobolectric     : "org.robolectric:robolectric:$lutRobolectricVersion",
+            adtEspresso        : "androidx.test.espresso:espresso-core:$adtEspressoVersion",
+            adtTestRule        : "androidx.test:rules:$adtTestRuleVersion",
+            adtTestRunner      : "androidx.test:runner:$adtTestRunnerVersion",
+            adtExpressoContrib : "com.android.support.test.espresso:espresso-contrib:$adtExpressoContribVersion",
+            adtMockitoAndroid  : "org.mockito:mockito-android:$adtMockitoAndroidVersion",
+            adtJunit           : "androidx.test.ext:junit:$adtJunitVersion",
+            recyclerView       : "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    ]
+}
