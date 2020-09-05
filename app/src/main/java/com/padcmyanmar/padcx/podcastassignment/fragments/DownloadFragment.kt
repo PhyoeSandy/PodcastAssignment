@@ -17,7 +17,6 @@ import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.DownloadPrese
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.DownloadView
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
-import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_download.*
 
 /**
@@ -79,13 +78,13 @@ class DownloadFragment : BaseFragment(), DownloadView {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
-        rvDownloads.setEmptyView(mViewPodEmpty)
+        //rvDownloads.setEmptyView(mViewPodEmpty)
 
-        mCategoryAdapter = CategoryAdapter()
+       /* mCategoryAdapter = CategoryAdapter()
         with(rvCategory) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = mCategoryAdapter
-        }
+        }*/
     }
 
     override fun displayDownloadPodcastList() {

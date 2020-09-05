@@ -5,9 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
-import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastResponse
+import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -16,12 +14,12 @@ import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastRe
 @Dao
 interface RandomPodcastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPodcast(podcast: RandomPodcastResponse)
+    fun insertPodcast(podcast: RandomPodcastVO)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllPodcasts(podcasts: List<RandomPodcastResponse>)
+    fun insertAllPodcasts(podcasts: List<RandomPodcastVO>)
 
     @Query("SELECT * FROM random_podcast")
-    fun getRandomPodcast() : LiveData<RandomPodcastResponse>
+    fun getRandomPodcast() : LiveData<RandomPodcastVO>
 
 }

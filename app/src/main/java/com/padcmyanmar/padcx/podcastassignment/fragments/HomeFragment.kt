@@ -1,10 +1,13 @@
 package com.padcmyanmar.padcx.podcastassignment.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.podcastassignment.R
@@ -15,6 +18,8 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.HomePresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.HomePresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.HomeView
+import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.PlayerViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
@@ -49,7 +54,8 @@ class HomeFragment : BaseFragment(), HomeView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)    }
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -82,21 +88,24 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
-    override fun displayPlayListInfo(playlist: List<ItemVO>) {
+    override fun displayPlayListInfo(playlist: List<PlaylistsVO>) {
         mPodCastAdapter.setNewData(playlist.toMutableList())
     }
 
-    override fun displayRandomPodcast(podcast: PodcastVO) {
+    override fun displayRandomPodcast(podcast: RandomPodcastVO) {
         mPlayerViewPod.setData(podcast)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun bindDescription(description: String) {
-        tvDetails.text = description
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tvDetails.text = Html.fromHtml(description,0)
+        }
     }
 
     override fun navigateToPodcastDetails(podcastId: String) {
         startActivity(activity?.let {
-            PodCastDetailsActivity.newIntent(it,podcastId)
+            PodCastDetailsActivity.newIntent(it, podcastId)
         })
     }
 

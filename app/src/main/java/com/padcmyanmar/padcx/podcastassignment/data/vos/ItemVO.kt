@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName
 import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.DataTypeConverter
 
 @Entity(tableName = "playlist")
-@TypeConverters(DataTypeConverter::class)
 data class ItemVO(
     @PrimaryKey
     @SerializedName("id") val id: Int,

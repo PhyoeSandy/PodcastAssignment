@@ -3,7 +3,7 @@ package com.padcmyanmar.padcx.podcastassignment.views.viewpods
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.shared.extensions.loadImage
 import kotlinx.android.synthetic.main.player_view.view.*
 
@@ -25,9 +25,9 @@ class PlayerViewPod @JvmOverloads constructor(
         mDelegate = delegate
     }
 
-    fun setData(data: PodcastVO) {
+    fun setData(data: RandomPodcastVO) {
         ivPodcast.loadImage(data.image)
-        tvTitle.text = data.title
+        tvTitle.text = data.podcast.title
         tvDescription.text = data.description
     }
 

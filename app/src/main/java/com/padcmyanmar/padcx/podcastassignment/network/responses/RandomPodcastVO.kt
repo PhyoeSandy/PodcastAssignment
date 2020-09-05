@@ -1,13 +1,14 @@
 package com.padcmyanmar.padcx.podcastassignment.network.responses
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
+import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.PodcastTypeConverter
 
 @Entity(tableName = "random_podcast")
-data class RandomPodcastResponse(
+data class RandomPodcastVO(
 
     @PrimaryKey
     @SerializedName("id")  val id: String,
@@ -17,7 +18,6 @@ data class RandomPodcastResponse(
     @SerializedName("explicit_content")  val explicit_content: Boolean,
     @SerializedName("image")  val image: String,
 
-    @Embedded(prefix = "RandomPodcast_")
     @SerializedName("podcast") val podcast: PodcastVO
 
     /*

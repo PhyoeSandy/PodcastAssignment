@@ -1,9 +1,6 @@
 package com.padcmyanmar.padcx.podcastassignment.network
 
-import com.padcmyanmar.padcx.podcastassignment.network.responses.CategoryListResponse
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
-import com.padcmyanmar.padcx.podcastassignment.network.responses.PlayListResponse
-import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastResponse
+import com.padcmyanmar.padcx.podcastassignment.network.responses.*
 import com.padcmyanmar.padcx.podcastassignment.utils.*
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -17,7 +14,7 @@ import retrofit2.http.Query
  */
 interface PodcastApi {
     @GET(RANDOM_PODCST)
-    fun getRandomPodcast(@Header(PARAM_API_KEY) apiKey: String): Observable<RandomPodcastResponse>
+    fun getRandomPodcast(@Header(PARAM_API_KEY) apiKey: String): Observable<RandomPodcastVO>
 
     @GET(CATEGORIES_LIST)
     fun getCategoryList(
@@ -25,16 +22,17 @@ interface PodcastApi {
         @Query(TOP_LEVEL) top: Int
     ): Observable<CategoryListResponse>
 
+    //@GET("$PLAYLIST_INFO/{id}")  @Path("id") id: String,
     @GET("$PLAYLIST_INFO/{id}")
     fun getPlayListPodcasts(
         @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String,
         @Query(TYPE) type: String, @Query(PAGINATION) pagination: Int,
         @Query(SORT) sort: String
-        ): Observable<PlayListResponse>
+        ): Observable<PlayListNewResponse>
 
     @GET("$DETAILS_EPISODE/{id}")
     fun getDetailsEpisode(
         @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String
-    ): Observable<DetailsResponse>
+    ): Observable<DetailsVO>
 
 }

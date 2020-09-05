@@ -5,9 +5,9 @@ package com.padcmyanmar.padcx.podcastassignment.utils
  * on 9/1/2020.
  */
 
-const val BASE_URL = "https://listen-api.listennotes.com/api/v2/"
+const val BASE_URL = "https://802facbe-7ae1-410b-bc68-0eba1a7fb1c9.mock.pstmn.io/"
 const val PARAM_API_KEY = "X-ListenAPI-Key"
-const val PARAM_API_VALUE = "123"
+const val PARAM_API_VALUE = "1482256d06c14502a542d48c95407f18"
 
 const val TOP_LEVEL = "top_level_only"
 const val RANDOM_PODCST = "just_listen"
@@ -23,6 +23,7 @@ const val SORT_VALUE = "recent_added_first"
 const val CATEGORIES_LIST = "genres"
 
 const val DETAILS_EPISODE = "episodes"
+const val DETAILS_ID = "4d82e50314174754a3b603912448e812"
 
 
 

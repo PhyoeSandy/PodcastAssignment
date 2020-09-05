@@ -11,7 +11,6 @@ import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.Podcas
  * on 9/2/2020.
  */
 @Entity(tableName = "episode_data")
-@TypeConverters(PodcastTypeConverter::class)
 data class DataVO(
     @PrimaryKey
     @SerializedName("id") val id: String,

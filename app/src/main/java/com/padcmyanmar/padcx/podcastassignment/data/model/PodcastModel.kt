@@ -3,9 +3,9 @@ package com.padcmyanmar.padcx.podcastassignment.data.model
 import androidx.lifecycle.LiveData
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
-import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastResponse
+import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -20,13 +20,14 @@ interface PodcastModel {
 
     fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit)
 
-    fun getRandomPodcast() : LiveData<RandomPodcastResponse>
+    fun getRandomPodcast() : LiveData<RandomPodcastVO>
 
     fun getCategoryList() : LiveData<List<CategoryVO>>
 
-    fun getPlayListPodcasts() : LiveData<List<ItemVO>>
+    //fun getPlayListPodcasts() : LiveData<List<ItemVO>>
+    fun getPlayListPodcasts() : LiveData<List<PlaylistsVO>>
 
-    fun getDetailsPodcasts(id: String) : LiveData<DetailsResponse>
+    fun getDetailsPodcasts(id: String) : LiveData<DetailsVO>
 
 
 }

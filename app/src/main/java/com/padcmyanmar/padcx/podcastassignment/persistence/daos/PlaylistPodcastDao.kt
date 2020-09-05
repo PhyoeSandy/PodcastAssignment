@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -13,13 +13,22 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
  */
 @Dao
 interface PlaylistPodcastDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlaylist(playlist: ItemVO)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllPlaylists(playlists: List<ItemVO>)
 
     @Query("SELECT * FROM playlist")
-    fun getAllPlaylists(): LiveData<List<ItemVO>>
+    fun getAllPlaylists(): LiveData<List<ItemVO>>*/
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPlaylist(playlist: PlaylistsVO)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllPlaylists(playlists: List<PlaylistsVO>)
+
+    @Query("SELECT * FROM playlist")
+    fun getAllPlaylists(): LiveData<List<PlaylistsVO>>
 
 }

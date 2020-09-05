@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lineSpacingMultiplier="1.5"
-                        android:text="@string/details" />
+                        android:text="@{Html.fromHtml(@string/details)}" />
 
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
@@ -132,6 +132,7 @@
 
         <include
             android:id="@+id/vpEmpty"
+            android:visibility="gone"
             layout="@layout/viewpod_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
