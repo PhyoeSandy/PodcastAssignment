@@ -25,4 +25,16 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+def sensitiveDP = loadSensitiveData()
+
+ext {
+    sensitiveAPIData = sensitiveDP.getProperty('PARAM_API_VALUE')
+}
+
+def loadSensitiveData() {
+    Properties sensitiveDataProperties = new Properties()
+    sensitiveDataProperties.load(project.rootProject.file('sensitive_data.properties').newDataInputStream())
+    return sensitiveDataProperties
+}
+
 apply from: 'libraries.gradle'

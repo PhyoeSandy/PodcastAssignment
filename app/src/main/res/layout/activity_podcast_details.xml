@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,17 +10,16 @@
         android:layout_height="180dp"
         android:background="@drawable/background_gray"
         android:scaleType="centerCrop"
-        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pc1" />
+        app:srcCompat="@drawable/podcast" />
 
     <TextView
         android:id="@+id/tvTitle"
         style="@style/BlackBoldText"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/title_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:padding="@dimen/margin_medium"
         android:text="@string/title_name"
@@ -46,7 +43,7 @@
 
         <TextView
             android:id="@+id/tvTime"
-            style="@style/BlackBoldText.Small"
+            style="@style/BlackSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/ivMessage"
@@ -59,13 +56,13 @@
             android:id="@+id/ivLike"
             android:layout_width="@dimen/margin_large"
             android:layout_height="@dimen/margin_large"
-            app:srcCompat="@drawable/ic_baseline_whatshot_24"
             android:layout_marginStart="@dimen/margin_large"
-            android:layout_toRightOf="@id/tvTime"/>
+            android:layout_toRightOf="@id/tvTime"
+            app:srcCompat="@drawable/ic_baseline_whatshot_24" />
 
         <TextView
             android:id="@+id/tvLike"
-            style="@style/BlackBoldText.Small"
+            style="@style/BlackSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/ivMessage"
@@ -78,13 +75,13 @@
             android:id="@+id/ivMessage"
             android:layout_width="@dimen/margin_large"
             android:layout_height="@dimen/margin_large"
-            app:srcCompat="@drawable/ic_baseline_chat_24"
             android:layout_marginStart="@dimen/margin_large"
-            android:layout_toRightOf="@id/tvLike" />
+            android:layout_toRightOf="@id/tvLike"
+            app:srcCompat="@drawable/ic_baseline_chat_24" />
 
         <TextView
             android:id="@+id/tvMessage"
-            style="@style/BlackBoldText.Small"
+            style="@style/BlackSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/ivMessage"
@@ -93,12 +90,11 @@
             android:layout_toEndOf="@id/ivMessage"
             android:text="24" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/margin_large"
-            android:layout_height="@dimen/margin_large"
-            app:srcCompat="@drawable/dots"
-            android:layout_marginEnd="@dimen/margin_large"
-            android:layout_alignParentEnd="true"/>
+        <include
+            layout="@layout/two_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
@@ -121,11 +117,38 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:lineSpacingMultiplier="1.3"
-        android:textColor="@android:color/black"
         android:paddingEnd="@dimen/margin_medium_2"
+        style="@style/BlackSmallText"
         android:text="@string/details"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
+    <include
+        android:id="@+id/vpSmallMedia"
+        layout="@layout/playe_view_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/category_name"
+        style="@style/BlackSmallText"
+        android:background="@drawable/background_category"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_card_medium_2"
+        android:paddingEnd="@dimen/margin_card_medium_2"
+        app:layout_constraintStart_toStartOf="@+id/ivPodcast"
+        app:layout_constraintTop_toTopOf="@+id/ivPodcast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

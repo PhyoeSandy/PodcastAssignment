@@ -1,13 +1,18 @@
 package com.padcmyanmar.padcx.podcastassignment.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.padcmyanmar.padcx.podcastassignment.R
-import com.padcmyanmar.padcx.podcastassignment.adapters.CategorAdapter
+import com.padcmyanmar.padcx.podcastassignment.adapters.CategoryAdapter
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.SearchPresenter
+import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.SearchPresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.SearchView
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -31,7 +36,8 @@ class SearchFragment : BaseFragment(), SearchView {
             }
     }
 
-    private lateinit var mCategoryAdapter: CategorAdapter
+    private lateinit var mCategoryAdapter: CategoryAdapter
+    private lateinit var mPresenter: SearchPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +49,21 @@ class SearchFragment : BaseFragment(), SearchView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setupPresenter()
         setupRecyclerView()
+
+        mPresenter.onUiReady(this)
+    }
+
+    private fun setupPresenter() {
+        mPresenter = ViewModelProviders.of(this)
+            .get(SearchPresenterImpl::class.java)
+        mPresenter.initPresenter(this)
     }
 
     private fun setupRecyclerView() {
-        mCategoryAdapter = CategorAdapter()
+        mCategoryAdapter = CategoryAdapter()
         with(rvCategory) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = mCategoryAdapter
@@ -55,6 +71,15 @@ class SearchFragment : BaseFragment(), SearchView {
     }
 
     override fun displayCategoryList(categories: List<CategoryVO>) {
-
+        mCategoryAdapter.setNewData(categories.toMutableList())
     }
+
+    override fun bindCategoryName(category: CategoryVO) {
+        tvCategory.text = category.name
+    }
+
+    override fun showErrorMessage(error: String) {
+        Log.e("Search Fragment: ", error)
+    }
+
 }

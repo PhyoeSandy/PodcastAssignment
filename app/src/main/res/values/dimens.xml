@@ -38,5 +38,7 @@
     <dimen name="button_width">350dp</dimen>
 	<dimen name="podcast_width">100dp</dimen>
 	<dimen name="podcast_height">120dp</dimen>
+    <dimen name="media_text_width">230dp</dimen>
+	<dimen name="title_width">380dp</dimen>
 
 </resources>

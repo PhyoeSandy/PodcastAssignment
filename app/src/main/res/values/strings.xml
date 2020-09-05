@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">PodcastAssignment</string>
-    <string name="category_name">Arts Design</string>
     <string name="podcast_title">Women in Technology Product hosted by Expresso Demonra</string>
     <string name="categories">Categories</string>
-    <string name="your_shows">Your Shows</string>
+    <string name="your_shows"><b>Your</b> Shows</string>
     <string name="welcome">Welcome</string>
     <string name="no_data">It looks like you aren\'t enrolled in\n any podcasts, but it\'s easy to get\n       started.</string>
     <string name="lbl_new">FIND SOMETHING NEW</string>
@@ -12,4 +11,14 @@
     <string name="details">Everyone wants to make a difference in the world. Changing the World is a daunting task, but when we go on an international mission trip God can use that to change our world forever. Fellow travelers share real-life stories of radical transformation as a result of going on a mission trip. Find yourself right in the middle of a missions team being transformed by God. Receive practical resources as God uses missions to change your life.</string>
     <string name="podcast">Podcast</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="_1x">1x</string>
+    <string name="_15">15</string>
+    <string name="_30">30</string>
+    <string name="zz">Zz</string>
+    <string name="up_next">Up Next</string>
+    <string name="category_intro">How to Influence with Tactical Empathy</string>
+    <string name="start_time">05:18</string>
+    <string name="end_time">18:51</string>
+    <string name="category_name"><![CDATA[ART & DESIGN]]></string>
+    <string name="time_left">1 hr 2 min left</string>
 </resources>

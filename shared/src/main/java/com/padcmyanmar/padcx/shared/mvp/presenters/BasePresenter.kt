@@ -1,6 +1,8 @@
 package com.padcmyanmar.padcx.shared.mvp.presenters
 
-import com.padcmyanmar.padcx.podcastassignment.mvp.views.BaseView
+import androidx.lifecycle.LifecycleOwner
+import com.padcmyanmar.padcx.shared.mvp.views.BaseView
+
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -8,4 +10,5 @@ import com.padcmyanmar.padcx.podcastassignment.mvp.views.BaseView
  */
 interface BasePresenter<T: BaseView> {
     fun initPresenter(view:T)
+    fun onUiReady(lifecycleOwner: LifecycleOwner)
 }

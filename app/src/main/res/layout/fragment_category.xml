@@ -5,27 +5,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Card"
+    <com.padcmyanmar.padcx.podcastassignment.views.components.RoundedCornerImageView
+        android:id="@+id/ivImage"
         android:layout_width="@dimen/extra"
         android:layout_height="@dimen/extra"
+        app:cornerRadius="@dimen/margin_large"
+        android:src="@drawable/podcast"
         android:layout_marginTop="@dimen/margin_large"
-        android:layout_marginStart="16dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="10dp">
+        android:layout_marginStart="@dimen/margin_medium_2"/>
 
-        <ImageView
-            android:id="@+id/ivImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/pc"
-            android:scaleType="centerCrop"/>
-
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/podcast_width"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/category_intro"
+        style="@style/WhiteText.Bold"
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/lblCategory"
-        android:layout_below="@id/Card"
+        android:layout_below="@id/ivImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/categories"

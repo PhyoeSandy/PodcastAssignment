@@ -1,8 +1,13 @@
 package com.padcmyanmar.padcx.podcastassignment.mvp.presenters
 
+import com.padcmyanmar.padcx.podcastassignment.delegates.PodCastItemDelegate
+import com.padcmyanmar.padcx.podcastassignment.mvp.views.DownloadView
+import com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod
+import com.padcmyanmar.padcx.shared.mvp.presenters.BasePresenter
+
 /**
  * Created by Phyoe Sandy Soe Tun
  * on 8/23/2020.
  */
-interface DownloadPresenter {
+interface DownloadPresenter : EmptyViewPod.Delegate, PodCastItemDelegate, BasePresenter<DownloadView> {
 }

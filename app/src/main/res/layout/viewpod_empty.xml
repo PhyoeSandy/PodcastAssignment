@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:layout_marginTop="150dp"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/category_height"
-        android:scaleType="fitCenter"
         android:layout_marginStart="4dp"
         android:layout_marginTop="5dp"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/emptybox" />
+        app:srcCompat="@drawable/empty" />
 
     <TextView
         android:id="@+id/lblWelcome"
+        style="@style/BlackBoldText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/welcome"
-        style="@style/BlackBoldText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -33,44 +35,60 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/no_data"
         android:padding="@dimen/margin_small"
+        style="@style/BlackSmallText"
+        android:text="@string/no_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblWelcome" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNew"
         android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/button_background_blue"
+        android:backgroundTint="@color/colorCategory2"
         android:padding="18dp"
         android:text="@string/lbl_new"
+        app:cornerRadius="10dp"
+        style="@style/BlackSmallText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnReload"
         android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/reload"
-        android:background="@drawable/button_background_yellow"
-        app:layout_constraintTop_toBottomOf="@+id/btnNew"
+        android:backgroundTint="@color/colorCategory1"
         android:padding="18dp"
+        android:text="@string/reload"
+        style="@style/BlackSmallText"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNew"
         tools:layout_editor_absoluteX="94dp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="@dimen/margin_medium_3"
-        android:layout_height="@dimen/margin_medium_3"
-        android:layout_marginTop="16dp"
+    <View
+        android:id="@+id/dot1"
+        android:layout_width="@dimen/margin_medium"
+        android:layout_height="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/black_point"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReload"
-        app:srcCompat="@drawable/dots" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/btnReload" />
+
+    <View
+        android:id="@+id/dot2"
+        android:layout_width="@dimen/margin_medium"
+        android:layout_height="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:background="@drawable/black_point"
+        app:layout_constraintBottom_toBottomOf="@id/dot1"
+        app:layout_constraintStart_toEndOf="@id/dot1"
+        app:layout_constraintTop_toTopOf="@id/dot1" />
+
+</com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod>

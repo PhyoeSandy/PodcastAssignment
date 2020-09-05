@@ -11,17 +11,9 @@ import com.padcmyanmar.padcx.shared.adapters.BaseRecyclerAdapter
  * Created by Phyoe Sandy Soe Tun
  * on 8/23/2020.
  */
-class CategorAdapter : BaseRecyclerAdapter<CategoryViewHolder, CategoryVO>() {
+class CategoryAdapter : BaseRecyclerAdapter<CategoryViewHolder, CategoryVO>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
         return CategoryViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return 5
-    }
-
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-
     }
 }

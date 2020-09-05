@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/dot1"
+        android:layout_width="@dimen/margin_medium"
+        android:layout_height="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_toLeftOf="@id/dot2"
+        android:background="@drawable/black_point" />
+
+    <View
+        android:id="@+id/dot2"
+        android:layout_width="@dimen/margin_medium"
+        android:layout_height="@dimen/margin_medium"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:background="@drawable/black_point" />
+
+</RelativeLayout>

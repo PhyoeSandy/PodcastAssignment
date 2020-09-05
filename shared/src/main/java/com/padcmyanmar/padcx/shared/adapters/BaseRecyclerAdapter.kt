@@ -15,6 +15,10 @@ abstract class BaseRecyclerAdapter<T: BaseViewHolder<W>,W> : RecyclerView.Adapte
         return mData.count()
     }
 
+    override fun onBindViewHolder(holder: T, position: Int) {
+        holder.bindData(mData[position])
+    }
+
     fun setNewData(data: MutableList<W>) {
         mData = data
         notifyDataSetChanged()

@@ -1,21 +1,40 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorCategory1</item>
+        <item name="colorAccent">@color/colorCategory3</item>
     </style>
 
-
     <style name="BlackBoldText">
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_heading_1x</item>
+        <item name="fontFamily">@font/codepro_bold</item>
+    </style>
+
+    <style name="BlackBoldText.Regular">
         <item name="android:textSize">@dimen/text_regular_2x</item>
     </style>
 
-    <style name="BlackBoldText.Small">
+    <style name="BlackSmallText">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="fontFamily">@font/codepro_regular</item>
         <item name="android:textSize">@dimen/text_regular</item>
+    </style>
+
+    <style name="WhiteText">
+        <item name="fontFamily">@font/codepro_regular</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WhiteText.Small">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="WhiteText.Bold">
+        <item name="android:textSize">@dimen/text_regular_2x</item>
+        <item name="fontFamily">@font/codepro_bold</item>
     </style>
 
 </resources>

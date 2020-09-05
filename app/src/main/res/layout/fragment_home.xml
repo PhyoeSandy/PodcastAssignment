@@ -1,76 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivIcon"
+                <ImageView
+                    android:id="@+id/ivPodcastLogo"
                     android:layout_width="@dimen/margin_xxlarge"
                     android:layout_height="@dimen/margin_xxlarge"
-                    android:src="@drawable/pc"/>
+                    android:layout_margin="@dimen/margin_medium"
+                    android:src="@drawable/icon"
+                    app:tint="@color/textColorPrimary" />
 
                 <TextView
-                    android:id="@+id/toolbar_title"
+                    android:id="@+id/lblTitle"
+                    style="@style/BlackBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/ivIcon"
+                    android:layout_alignTop="@id/ivPodcastLogo"
+                    android:layout_alignBottom="@id/ivPodcastLogo"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_toEndOf="@id/ivPodcastLogo"
                     android:gravity="center"
-                    android:text="@string/podcast"
-                    android:textSize="@dimen/text_heading_2x"
-                    style="@style/BlackBoldText"/>
+                    android:text="@string/podcast" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivDot"
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    android:layout_width="@dimen/margin_xlarge"
+                    android:layout_height="@dimen/margin_xlarge"
+                    android:layout_alignTop="@id/ivPodcastLogo"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:padding="@dimen/margin_medium"
+                    android:src="@drawable/ic_baseline_notifications_none_24" />
+
+                <View
+                    android:layout_width="@dimen/margin_medium"
+                    android:layout_height="@dimen/margin_medium"
+                    android:layout_alignEnd="@id/ivNotification"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:background="@drawable/noti_point" />
+
+
+                <include
+                    android:id="@+id/vpLargeMedia"
+                    layout="@layout/player_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivPodcastLogo"
+                    android:layout_margin="@dimen/margin_medium" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vpLargeMedia"
+                    android:backgroundTint="#E7E7ED"
+                    app:cardCornerRadius="@dimen/margin_medium_2"
+                    app:cardElevation="@dimen/margin_small"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="@dimen/margin_medium_2">
+
+                    <TextView
+                        android:id="@+id/tvDetails"
+                        style="@style/BlackSmallText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="@string/details" />
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/margin_medium_2">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:src="@drawable/ic_baseline_notifications_none_24"/>
+                    android:layout_centerVertical="true"
+                    android:text="Up Next"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_heading_1x"
+                    android:textStyle="bold" />
+
+                <include
+                    layout="@layout/two_dots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true" />
 
             </RelativeLayout>
-
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
-    
-    <TextView
-        android:id="@+id/tvDescription"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:padding="@dimen/margin_medium"
-        android:layout_below="@id/appbar"
-        android:lineSpacingMultiplier="1.4"
-        android:text="@string/details"
-        android:background="@drawable/background_gray"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPodcasts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_below="@id/tvDescription"/>
+        <com.padcmyanmar.padcx.podcastassignment.views.components.SmartRecyclerView
+            android:id="@+id/rvPodcasts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_small" />
 
+        <include
+            android:id="@+id/vpEmpty"
+            layout="@layout/viewpod_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+    </RelativeLayout>
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

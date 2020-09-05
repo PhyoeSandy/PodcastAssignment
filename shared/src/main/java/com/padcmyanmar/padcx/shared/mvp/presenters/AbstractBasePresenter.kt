@@ -1,7 +1,7 @@
 package com.padcmyanmar.padcx.shared.mvp.presenters
 
 import androidx.lifecycle.ViewModel
-import com.padcmyanmar.padcx.podcastassignment.mvp.views.BaseView
+import com.padcmyanmar.padcx.shared.mvp.views.BaseView
 
 /**
  * Created by Phyoe Sandy Soe Tun

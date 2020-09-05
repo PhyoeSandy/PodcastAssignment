@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="blue">#5893A6</color>
-    <color name="yellow">#FFFF66</color>
+    <color name="colorPrimary">#ec5757</color>
+    <color name="colorMediaBg">#5854a3</color>
+    <color name="colorCategory1">#fdda8a</color>
+    <color name="colorCategory2">#cee6e7</color>
+    <color name="colorCategory3">#e8d1e5</color>
+    <color name="colorEmptyViewBtn">#b5dbf7</color>
+    <color name="textColorPrimary">#0a0a0a</color>
+    <color name="textColorSecondary">#252525</color>
+    <color name="textColorTertary">#979797</color>
+    <color name="colorProgressBar">#bae2fe</color>
+
 </resources>

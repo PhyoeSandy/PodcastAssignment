@@ -1,15 +1,22 @@
 package com.padcmyanmar.padcx.podcastassignment.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
 import com.padcmyanmar.padcx.podcastassignment.adapters.PodCastAdapter
+import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
+import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.HomePresenter
+import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.HomePresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.HomeView
+import com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod
+import com.padcmyanmar.padcx.podcastassignment.views.viewpods.PlayerViewPod
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -33,6 +40,9 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     private lateinit var mPodCastAdapter: PodCastAdapter
+    private lateinit var mPresenter: HomePresenter
+    private lateinit var mEmptyViewPod: EmptyViewPod
+    private lateinit var mPlayerViewPod: PlayerViewPod
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,23 +54,54 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setupPresenter()
         setupRecyclerView()
+        setupViewPod()
+
+        mPresenter.onUiReady(this)
+    }
+
+    private fun setupViewPod() {
+        mEmptyViewPod = vpEmpty as EmptyViewPod
+        mEmptyViewPod.setDelegate(mPresenter)
+
+        mPlayerViewPod = vpLargeMedia as PlayerViewPod
+        mPlayerViewPod.setDelegate(mPresenter)
+    }
+
+    private fun setupPresenter() {
+        mPresenter = ViewModelProviders.of(this).get(HomePresenterImpl::class.java)
+        mPresenter.initPresenter(this)
     }
 
     private fun setupRecyclerView() {
-        mPodCastAdapter = PodCastAdapter()
+        mPodCastAdapter = PodCastAdapter(mPresenter)
         with(rvPodcasts) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mPodCastAdapter
         }
     }
 
-    override fun displayPodcastList(podcasts: List<PodcastVO>) {
-
+    override fun displayPlayListInfo(playlist: List<ItemVO>) {
+        mPodCastAdapter.setNewData(playlist.toMutableList())
     }
 
-    override fun navigateToPodcastDetails() {
-        startActivity(PodCastDetailsActivity.newIntent(requireContext()))
+    override fun displayRandomPodcast(podcast: PodcastVO) {
+        mPlayerViewPod.setData(podcast)
+    }
+
+    override fun bindDescription(description: String) {
+        tvDetails.text = description
+    }
+
+    override fun navigateToPodcastDetails(podcastId: String) {
+        startActivity(activity?.let {
+            PodCastDetailsActivity.newIntent(it,podcastId)
+        })
+    }
+
+    override fun showErrorMessage(error: String) {
+        Log.e("Home Fragment: ", error)
     }
 
 }
