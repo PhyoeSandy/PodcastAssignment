@@ -59,13 +59,21 @@
                     android:background="@drawable/noti_point" />
 
 
-                <include
-                    android:id="@+id/vpLargeMedia"
-                    layout="@layout/player_view"
+                 <include
+                     android:id="@+id/vpLargeMedia"
+                     layout="@layout/player_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@id/ivPodcastLogo"
+                     android:layout_margin="@dimen/margin_medium" />
+
+                <!--<com.padcmyanmar.padcx.podcastassignment.views.viewpods.ExoPlayerViewPod
+                    android:id="@+id/player_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ivPodcastLogo"
-                    android:layout_margin="@dimen/margin_medium" />
+                    android:layout_margin="@dimen/margin_medium"
+                    app:controller_layout_id="@layout/player_view" />-->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -132,10 +140,10 @@
 
         <include
             android:id="@+id/vpEmpty"
-            android:visibility="gone"
             layout="@layout/viewpod_empty"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

@@ -28,6 +28,11 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -68,14 +73,13 @@ dependencies {
     // Image Slider
     implementation rootProject.ext.libraries.imageSlider
 
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.8'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.11.8'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.8'
+    implementation rootProject.ext.libraries.exoplayerCore
+
+    implementation rootProject.ext.libraries.workManager
 
     testImplementation rootProject.ext.libraries.Junit
     testImplementation rootProject.ext.libraries.Ktx
     testImplementation rootProject.ext.libraries.JunitKtx
-
 
     // Local Unit Tests
     testImplementation rootProject.ext.libraries.JunitKtx

@@ -22,6 +22,8 @@ ext {
     adtMockitoAndroidVersion = "3.1.0"
     adtJunitVersion = "1.1.1"
     recyclerViewVersion = "1.1.0"
+    exoplayerVersion = "2.11.8"
+    workManagerVersion = "2.4.0"
 
 
     libraries = [
@@ -51,6 +53,8 @@ ext {
             adtExpressoContrib : "com.android.support.test.espresso:espresso-contrib:$adtExpressoContribVersion",
             adtMockitoAndroid  : "org.mockito:mockito-android:$adtMockitoAndroidVersion",
             adtJunit           : "androidx.test.ext:junit:$adtJunitVersion",
-            recyclerView       : "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+            recyclerView       : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+            exoplayerCore      : "com.google.android.exoplayer:exoplayer-core:$exoplayerVersion",
+            workManager        : "androidx.work:work-runtime:$workManagerVersion"
     ]
 }

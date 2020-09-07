@@ -1,31 +1,41 @@
 package com.padcmyanmar.padcx.podcastassignment.views.viewholders
 
+import android.annotation.SuppressLint
+import android.os.Build
+import android.text.Html
 import android.view.View
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
 import com.padcmyanmar.padcx.podcastassignment.delegates.PodCastItemDelegate
-import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
 import com.padcmyanmar.padcx.shared.extensions.loadImage
 import com.padcmyanmar.padcx.shared.views.viewholders.BaseViewHolder
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_podcasts.view.*
 
 /**
  * Created by Phyoe Sandy Soe Tun
  * on 8/22/2020.
  */
-class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) : BaseViewHolder<PlaylistsVO>(itemView) {
+class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) :
+    BaseViewHolder<ItemVO>(itemView) {
     init {
-        itemView.setOnClickListener{
+        itemView.setOnClickListener {
             mData?.let {
-                delegate.onTapPodcast(it.id)
+                delegate.onTapPodcast(it.data.id)
+            }
+        }
+
+        itemView.btnDownload.setOnClickListener {
+            mData?.let {
+                delegate.onTapDownload(it.data.id)
             }
         }
     }
 
-    override fun bindData(data: PlaylistsVO) {
-        mData = data
+    @SuppressLint("NewApi")
+    override fun bindData(item: ItemVO) {
+        mData = item
 
-        itemView.ivPodcast.loadImage(data.image)
-        itemView.tvTitle.text = data.description
+        itemView.ivPodcast.loadImage(item.data.image)
+        itemView.tvTitle.text = Html.fromHtml(item.data.description, 0)
     }
 }

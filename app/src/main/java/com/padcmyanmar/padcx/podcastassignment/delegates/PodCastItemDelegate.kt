@@ -7,4 +7,5 @@ package com.padcmyanmar.padcx.podcastassignment.delegates
 interface PodCastItemDelegate {
 
     fun onTapPodcast(podcastId: String)
+    fun onTapDownload(podcastId: String)
 }

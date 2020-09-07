@@ -12,6 +12,7 @@ import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
 import com.padcmyanmar.padcx.podcastassignment.adapters.CategoryAdapter
 import com.padcmyanmar.padcx.podcastassignment.adapters.DownloadPodcastAdapter
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.DownloadPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.DownloadPresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.DownloadView
@@ -78,7 +79,6 @@ class DownloadFragment : BaseFragment(), DownloadView {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
-        //rvDownloads.setEmptyView(mViewPodEmpty)
 
        /* mCategoryAdapter = CategoryAdapter()
         with(rvCategory) {
@@ -87,8 +87,8 @@ class DownloadFragment : BaseFragment(), DownloadView {
         }*/
     }
 
-    override fun displayDownloadPodcastList() {
-
+    override fun displayDownloadPodcastList(downloads: List<ItemVO>) {
+        mAdapter.setNewData(downloads.toMutableList())
     }
 
     override fun displayCategoryList(categories: List<CategoryVO>) {
@@ -98,6 +98,9 @@ class DownloadFragment : BaseFragment(), DownloadView {
     override fun navigateToPodcastDetails(podcastId: String) {
         startActivity(PodCastDetailsActivity.newIntent(requireContext(), podcastId))
     }
+/*
+    override fun downloadingAudio(audio: String) {
+    }*/
 
     override fun showErrorMessage(error: String) {
         Log.e("Download Fragment: ", error)

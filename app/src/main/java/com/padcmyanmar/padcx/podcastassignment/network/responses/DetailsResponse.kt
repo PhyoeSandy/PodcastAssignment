@@ -13,7 +13,7 @@ import kotlin.math.tan
  * on 9/4/2020.
  */
 @Entity(tableName = "details")
-data class DetailsVO(
+data class DetailsResponse(
     @SerializedName("audio")var audio: String,
     @SerializedName("audio_length_sec")var audio_length_sec: Int,
     @SerializedName("description")var description: String,

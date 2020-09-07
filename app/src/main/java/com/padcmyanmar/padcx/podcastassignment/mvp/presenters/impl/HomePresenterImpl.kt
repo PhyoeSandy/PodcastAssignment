@@ -24,6 +24,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         Log.d("onTap30secBackward", "onTap30secBackward")
     }
 
+
     override fun onTapFindSomething() {
         Log.d("onTapFindSomething", "onTapFindSomething")
     }
@@ -36,8 +37,16 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         mView?.navigateToPodcastDetails(podcastId)
     }
 
+    override fun onTapDownload(podcastId: String) {
+        mPodcastModel.getDetailsPodcastsById(podcastId).subscribe {
+            it?.let {
+                mView?.downloadingAudio(it.audio)
+            }
+        }
+    }
+
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
-        loadDataFromAPI()
+        //loadDataFromAPI()
 
         mPodcastModel.getPlayListPodcasts().observe(lifecycleOwner,
             Observer {
@@ -53,6 +62,10 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
             })
     }
 
+    override fun onTapPlayButton(audio: String) {
+        mView?.playMusic(audio)
+    }
+
     private fun loadDataFromAPI() {
         mPodcastModel.getRandomPodcastAndSaveToDb({}, {
             mView?.showErrorMessage(it)
@@ -61,6 +74,6 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         mPodcastModel.getPlayListAndSaveToDb({}, {
             mView?.showErrorMessage(it)
         })
-
     }
+
 }

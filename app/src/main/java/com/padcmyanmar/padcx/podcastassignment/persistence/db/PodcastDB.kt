@@ -9,8 +9,7 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.persistence.daos.CategoryDao
 import com.padcmyanmar.padcx.podcastassignment.persistence.daos.DetailsDao
@@ -23,11 +22,10 @@ import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.Podcas
  * Created by Phyoe Sandy Soe Tun
  * on 9/2/2020.
  */
-//ItemVO::class,
 @Database(entities = [PodcastVO::class, CategoryVO::class,
-    DataVO::class, PlaylistsVO::class,
+    DataVO::class, ItemVO::class,
     RandomPodcastVO::class,
-    DetailsVO::class], version = 14, exportSchema = false)
+    DetailsResponse::class], version = 16, exportSchema = false)
 @TypeConverters(PodcastTypeConverter::class, DataTypeConverter::class)
 abstract class PodcastDB : RoomDatabase() {
     companion object {

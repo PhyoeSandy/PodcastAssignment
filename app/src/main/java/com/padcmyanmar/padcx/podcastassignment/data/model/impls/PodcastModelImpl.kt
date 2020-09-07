@@ -5,10 +5,10 @@ import com.padcmyanmar.padcx.podcastassignment.data.model.BaseModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.utils.*
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -46,22 +46,6 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             TYPE_VALUE, PAGINATION_VALUE,
             SORT_VALUE
         )
-            .map { it.playlists?.toList() ?: listOf() }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mDB.playlistDao().insertAllPlaylists(it)
-            }, {
-                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
-            })
-    }
-
-    /*override fun getPlayListAndSaveToDb(onSuccess: () -> Unit, onError: (String) -> Unit) {
-        mPodcastApi.getPlayListPodcasts(
-            PARAM_API_VALUE,
-            TYPE_VALUE, PAGINATION_VALUE,
-            SORT_VALUE
-        )
             .map { it.items?.toList() ?: listOf() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -70,10 +54,10 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             }, {
                 onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
-    }*/
+    }
 
-    override fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
-        mPodcastApi.getDetailsEpisode(PARAM_API_KEY, DETAILS_ID )
+   /* override fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
+        mPodcastApi.getDetailsEpisode(PARAM_API_VALUE, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -81,7 +65,7 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             }, {
                 onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
-    }
+    }*/
 
     override fun getRandomPodcast(): LiveData<RandomPodcastVO> {
         return mDB.podcastDao().getRandomPodcast()
@@ -91,15 +75,17 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
         return mDB.categoryDao().getAllCategories()
     }
 
-    override fun getPlayListPodcasts(): LiveData<List<PlaylistsVO>> {
+    override fun getPlayListPodcasts(): LiveData<List<ItemVO>> {
         return mDB.playlistDao().getAllPlaylists()
     }
 
-    /*override fun getPlayListPodcasts(): LiveData<List<ItemVO>> {
-        return mDB.playlistDao().getAllPlaylists()
-    }*/
+    override fun getDetailsPodcastsById(id: String): Observable<DetailsResponse> {
+        return mPodcastApi.getDetailsEpisode(PARAM_API_VALUE, id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 
-    override fun getDetailsPodcasts(id: String): LiveData<DetailsVO> {
-        return mDB.detailsDao().getDetailsById(id)
+    override fun getDownloadsPodcasts(): LiveData<List<ItemVO>> {
+        return mDB.playlistDao().getAllDownloadPlaylists()
     }
 }

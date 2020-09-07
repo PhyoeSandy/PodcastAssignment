@@ -1,8 +1,11 @@
 package com.padcmyanmar.padcx.podcastassignment.views.viewpods
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.text.Html
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.shared.extensions.loadImage
 import kotlinx.android.synthetic.main.player_view.view.*
@@ -15,6 +18,7 @@ class PlayerViewPod @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     private var mDelegate : Delegate ?= null
+    var audio: String = R.string.media_url_mp3.toString()
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -25,10 +29,12 @@ class PlayerViewPod @JvmOverloads constructor(
         mDelegate = delegate
     }
 
+    @SuppressLint("NewApi")
     fun setData(data: RandomPodcastVO) {
         ivPodcast.loadImage(data.image)
         tvTitle.text = data.podcast.title
-        tvDescription.text = data.description
+        tvDescription.text = Html.fromHtml(data.description,0)
+        audio = data.audio
     }
 
     private fun setupListener() {
@@ -39,17 +45,16 @@ class PlayerViewPod @JvmOverloads constructor(
         tv30.setOnClickListener {
             mDelegate?.onTap30secBackward()
         }
-    }
 
-    fun setData(title: String, url: String) {
-        ivPodcast.loadImage(url)
-        tvTitle.text = title
+        btnPlay.setOnClickListener {
+            mDelegate?.onTapPlayButton(audio)
+        }
     }
 
     interface Delegate {
         fun onTap15secForward()
         fun onTap30secBackward()
+        fun onTapPlayButton(audio: String)
     }
-
 
 }

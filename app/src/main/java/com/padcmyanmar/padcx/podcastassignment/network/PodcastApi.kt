@@ -22,17 +22,16 @@ interface PodcastApi {
         @Query(TOP_LEVEL) top: Int
     ): Observable<CategoryListResponse>
 
-    //@GET("$PLAYLIST_INFO/{id}")  @Path("id") id: String,
     @GET("$PLAYLIST_INFO/{id}")
     fun getPlayListPodcasts(
         @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String,
         @Query(TYPE) type: String, @Query(PAGINATION) pagination: Int,
         @Query(SORT) sort: String
-        ): Observable<PlayListNewResponse>
+        ): Observable<PlayListResponse>
 
-    @GET("$DETAILS_EPISODE/{id}")
+    @GET(DETAILS_EPISODE)
     fun getDetailsEpisode(
-        @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String
-    ): Observable<DetailsVO>
+        @Header(PARAM_API_KEY) apiKey: String, @Query("id") id: String
+    ): Observable<DetailsResponse>
 
 }

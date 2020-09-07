@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
 import com.padcmyanmar.padcx.podcastassignment.delegates.PodCastItemDelegate
-import com.padcmyanmar.padcx.podcastassignment.network.responses.PlaylistsVO
 import com.padcmyanmar.padcx.podcastassignment.views.viewholders.PodcastViewHolder
 import com.padcmyanmar.padcx.shared.adapters.BaseRecyclerAdapter
 
@@ -15,7 +13,7 @@ import com.padcmyanmar.padcx.shared.adapters.BaseRecyclerAdapter
  * on 8/23/2020.
  */
 class PodCastAdapter(delegate: PodCastItemDelegate) :
-    BaseRecyclerAdapter<PodcastViewHolder, PlaylistsVO>() {
+    BaseRecyclerAdapter<PodcastViewHolder, ItemVO>() {
     private val mDelegate = delegate
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastViewHolder {

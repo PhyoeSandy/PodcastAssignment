@@ -36,5 +36,6 @@ dependencies {
     implementation rootProject.ext.libraries.recyclerView
     implementation rootProject.ext.libraries.material
     implementation rootProject.ext.libraries.glide
+    implementation rootProject.ext.libraries.exoplayerCore
 
 }

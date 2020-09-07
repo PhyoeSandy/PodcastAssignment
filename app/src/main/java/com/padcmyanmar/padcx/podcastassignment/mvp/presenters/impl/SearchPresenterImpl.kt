@@ -17,9 +17,9 @@ class SearchPresenterImpl : AbstractBasePresenter<SearchView>(), SearchPresenter
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
 
-        mPodcastModel.getCategoryListAndSaveToDb({}, {
+       /* mPodcastModel.getCategoryListAndSaveToDb({}, {
             mView?.showErrorMessage(it)
-        })
+        })*/
 
         mPodcastModel.getCategoryList().observe(
             lifecycleOwner, Observer {

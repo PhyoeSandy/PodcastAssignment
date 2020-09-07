@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -14,8 +14,11 @@ import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsVO
 @Dao
 interface DetailsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDetails(detail: DetailsVO)
+    fun insertDetails(detail: DetailsResponse)
 
-    @Query("SELECT * FROM details WHERE id=:id")
-    fun getDetailsById(id: String) : LiveData<DetailsVO>
+    /*@Query("SELECT * FROM details WHERE id=:id")
+    fun getDetailsById(id: String) : LiveData<DetailsVO>*/
+
+    @Query("SELECT * FROM details")
+    fun getDetailsById() : LiveData<DetailsResponse>
 }
