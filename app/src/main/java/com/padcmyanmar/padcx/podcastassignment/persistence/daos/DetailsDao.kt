@@ -16,9 +16,9 @@ interface DetailsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDetails(detail: DetailsResponse)
 
-    /*@Query("SELECT * FROM details WHERE id=:id")
-    fun getDetailsById(id: String) : LiveData<DetailsVO>*/
+    @Query("SELECT * FROM details WHERE id = :id")
+    fun getDetailsById(id: String) : LiveData<DetailsResponse>
 
     @Query("SELECT * FROM details")
-    fun getDetailsById() : LiveData<DetailsResponse>
+    fun getAllDetail() : LiveData<List<DetailsResponse>>
 }

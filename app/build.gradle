@@ -74,6 +74,7 @@ dependencies {
     implementation rootProject.ext.libraries.imageSlider
 
     implementation rootProject.ext.libraries.exoplayerCore
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.8'
 
     implementation rootProject.ext.libraries.workManager
 

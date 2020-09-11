@@ -26,9 +26,13 @@ interface PodcastModel {
 
     fun getPlayListPodcasts() : LiveData<List<ItemVO>>
 
-    //fun getDetailsPodcasts(id: String) : LiveData<DetailsVO>
-    fun getDetailsPodcastsById(id: String) : Observable<DetailsResponse>
+    fun getDetailsPodcasts(id: String) : LiveData<DetailsResponse>
+    //fun getDetailsPodcastsById(id: String) : LiveData<DetailsResponse>
+
+    //fun getPlayListById(id: Int) : LiveData<ItemVO>
 
     fun getDownloadsPodcasts() : LiveData<List<ItemVO>>
+
+    fun saveDownloadedItems(data: ItemVO)
 
 }

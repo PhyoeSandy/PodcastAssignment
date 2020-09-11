@@ -21,14 +21,4 @@ data class DataVO(
     @SerializedName("description") val description: String,
     @SerializedName("title") val title: String
 
-/*
- @SerializedName("explicit_content") val explicit_content: Boolean,
- val description: String,
- val last_timestamp_ms: Long,
- val listennotes_url: String,
- val name: String,
- val thumbnail: String,
- val total: Int,
- val type: String,
- val visibility: String*/
 )

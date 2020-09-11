@@ -26,7 +26,7 @@ class SearchPresenterImpl : AbstractBasePresenter<SearchView>(), SearchPresenter
                 it?.let {
                     mView?.displayCategoryList(it)
                     if (it.isNotEmpty()) {
-                        mView?.bindCategoryName(it[0])
+                        mView?.bindData(it[0])
                     }
                 }
             }

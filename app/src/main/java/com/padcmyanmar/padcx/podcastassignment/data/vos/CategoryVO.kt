@@ -8,5 +8,6 @@ import com.google.gson.annotations.SerializedName
 data class CategoryVO(
     @PrimaryKey
     @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String
+    @SerializedName("name") val name: String,
+    @SerializedName("image") val image: String
 )

@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/BlackBoldText.Regular"
-        android:layout_width="@dimen/podcast_title_width"
+        android:layout_width="@dimen/download_title_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium_3"
         android:layout_marginTop="@dimen/margin_medium_2"
@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/tvDescription"
         style="@style/BlackSmallText"
-        android:layout_width="@dimen/podcast_title_width"
+        android:layout_width="@dimen/download_title_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium_3"
         android:layout_marginTop="@dimen/margin_medium_2"
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_marginTop="@dimen/margin_xxlarge"
         android:layout_marginEnd="@dimen/margin_medium_2"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"

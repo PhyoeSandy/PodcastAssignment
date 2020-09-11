@@ -9,5 +9,5 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
  */
 interface SearchView: BaseView {
     fun displayCategoryList(categories: List<CategoryVO>)
-    fun bindCategoryName(category: CategoryVO)
+    fun bindData(category: CategoryVO)
 }

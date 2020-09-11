@@ -98,9 +98,6 @@ class DownloadFragment : BaseFragment(), DownloadView {
     override fun navigateToPodcastDetails(podcastId: String) {
         startActivity(PodCastDetailsActivity.newIntent(requireContext(), podcastId))
     }
-/*
-    override fun downloadingAudio(audio: String) {
-    }*/
 
     override fun showErrorMessage(error: String) {
         Log.e("Download Fragment: ", error)

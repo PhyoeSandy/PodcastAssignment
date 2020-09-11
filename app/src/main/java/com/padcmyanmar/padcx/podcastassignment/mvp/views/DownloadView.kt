@@ -12,5 +12,4 @@ interface DownloadView : BaseView {
     fun displayDownloadPodcastList(downloads: List<ItemVO>)
     fun displayCategoryList(categories: List<CategoryVO>)
     fun navigateToPodcastDetails(podcastId: String)
-    //fun downloadingAudio(audio: String)
 }

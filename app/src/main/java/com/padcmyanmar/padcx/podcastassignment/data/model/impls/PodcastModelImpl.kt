@@ -79,13 +79,24 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
         return mDB.playlistDao().getAllPlaylists()
     }
 
-    override fun getDetailsPodcastsById(id: String): Observable<DetailsResponse> {
-        return mPodcastApi.getDetailsEpisode(PARAM_API_VALUE, id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    override fun getDetailsPodcasts(id: String): LiveData<DetailsResponse> {
+        return mDB.detailsDao().getDetailsById(id)
     }
+
+    /*override fun getDetailsPodcastsById(id: String): LiveData<DetailsResponse> {
+        return mDB.playlistDao().getPlaylistById(id)
+    }*/
+
+   /* override fun getPlayListById(id: Int): LiveData<ItemVO> {
+       // return mDB.playlistDao().getPlaylistById(id)
+        return null
+    }*/
 
     override fun getDownloadsPodcasts(): LiveData<List<ItemVO>> {
         return mDB.playlistDao().getAllDownloadPlaylists()
+    }
+
+    override fun saveDownloadedItems(data: ItemVO) {
+        mDB.playlistDao().updateStatusDownload(data.id)
     }
 }

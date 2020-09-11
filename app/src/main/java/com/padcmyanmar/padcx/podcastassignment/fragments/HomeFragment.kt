@@ -21,10 +21,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
@@ -36,11 +40,10 @@ import com.padcmyanmar.padcx.podcastassignment.mvp.views.HomeView
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.EmptyViewPod
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.PlayerViewPod
-import com.padcmyanmar.padcx.shared.extensions.initializePlayer
-import com.padcmyanmar.padcx.shared.extensions.releasePlayer
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.player_view.*
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -68,14 +71,35 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mPresenter: HomePresenter
 
     private lateinit var mEmptyViewPod: EmptyViewPod
-    private lateinit var mPlayerViewPod: PlayerViewPod
+    private lateinit var exoPlayerViewPod: PlayerViewPod
 
-    var audio: String = "https://www.listennotes.com/e/p/02f0123246c944e289ee2bb90804e41b/"
+    var exoPlayer: SimpleExoPlayer? = null
+    private var playbackPosition: Long = 0
+    private val forwardSpeed = 30000 //30sec
+    private val backwardSpeed = 15000 //15sec
+    private var isPlaying = false
+    var items: ItemVO? = null
+    var playWhenReady = false
 
-    lateinit var exoPlayer: SimpleExoPlayer
-    var isPlaying = false
-    var currentWindow = 0
-    var playBackPosition = 0L
+    val progressBarListener = object : Player.EventListener {
+        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+            super.onPlayerStateChanged(playWhenReady, playbackState)
+
+            if (playbackState == ExoPlayer.STATE_BUFFERING) {
+                playbackPosition = TimeUnit.MILLISECONDS.toSeconds(exoPlayer!!.currentPosition)
+
+                tvTime.text = String.format(
+                    "%02d : %02d", (playbackPosition % 3600) / 60,
+                    (playbackPosition % 3600) % 60
+                )
+
+                progressbar.max = (exoPlayer?.duration)!!.toInt()
+                progressbar.progress =
+                    ((exoPlayer!!.currentPosition * 100) / exoPlayer?.duration!!).toInt()
+            }
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,36 +112,20 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         setupPresenter()
         setupRecyclerView()
         setupViewPod()
 
         mPresenter.onUiReady(this)
-        exoPlayer = SimpleExoPlayer.Builder(requireContext()).build()
-
-        btnPlay.setOnClickListener {
-            if (!isPlaying) {
-                //initializePlayer(audio, exoPlayer, requireContext())
-                setUpMediaPlayer()
-                Log.d("Player: ", "played.")
-                isPlaying = true
-                btnPlay.setImageResource(R.drawable.ic_baseline_pause_24)
-            } else {
-                //releasePlayer(exoPlayer)
-                exoPlayer.stop()
-                Log.d("Player: ", "paused.")
-                btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow_24)
-                isPlaying = false
-            }
-        }
     }
 
     private fun setupViewPod() {
         mEmptyViewPod = vpEmpty as EmptyViewPod
         mEmptyViewPod.setDelegate(mPresenter)
 
-        mPlayerViewPod = vpLargeMedia as PlayerViewPod
-        mPlayerViewPod.setDelegate(mPresenter)
+        exoPlayerViewPod = vpLargeMedia as PlayerViewPod
+        exoPlayerViewPod.setDelegate(mPresenter)
     }
 
     private fun setupPresenter() {
@@ -138,7 +146,9 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun displayRandomPodcast(podcast: RandomPodcastVO) {
-        mPlayerViewPod.setData(podcast)
+        exoPlayerViewPod.setData(podcast)
+        initializePlayer(podcast.audio)
+        //setUpMediaPlayer()
     }
 
     @SuppressLint("NewApi")
@@ -152,32 +162,34 @@ class HomeFragment : BaseFragment(), HomeView {
         })
     }
 
-    override fun playMusic(audio: String) {
-        this.audio = audio
-        btnPlay.setOnClickListener {
-            if (!isPlaying) {
-                //initializePlayer(audio, exoPlayer, requireContext())
-                setUpMediaPlayer()
-                Log.d("Player: ", "played.")
-                isPlaying = true
-                btnPlay.setImageResource(R.drawable.ic_baseline_pause_24)
-            } else {
-                //releasePlayer(exoPlayer)
-                Log.d("Player: ", "paused.")
-                btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow_24)
-                isPlaying = false
-            }
+    override fun playMusic() {
+        if (!isPlaying) {
+            exoPlayer?.playWhenReady = true
+            btnPlay.setImageResource(R.drawable.ic_baseline_pause_24)
+            isPlaying = true
+        } else {
+            exoPlayer?.playWhenReady = false
+            btnPlay.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+            isPlaying = false
         }
     }
 
-    override fun downloadingAudio(audio: String) {
+    override fun downloadingAudio(data: ItemVO) {
+        items = data
         checkPermission()
-        download()
+    }
+
+    override fun skip15SecBackward() {
+        move15SecBackward()
+    }
+
+    override fun skip30SecForward() {
+        move30SecForward()
     }
 
     private fun download() {
-        var request = DownloadManager.Request(Uri.parse(getString(R.string.media_url_mp3)))
-            .setTitle("Downing Audio")
+        var request = DownloadManager.Request(Uri.parse(items?.data?.audio))
+            .setTitle("Podcast Audio")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
             .setAllowedOverMetered(true)
 
@@ -185,7 +197,7 @@ class HomeFragment : BaseFragment(), HomeView {
             activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         request.setDestinationInExternalPublicDir(
             Environment.DIRECTORY_DOWNLOADS,
-            "podcastApp.mp3"
+            "${items?.data?.title?.trim()?.substring(0, 15)}.mp3"
         );
         var myDownloadId = downloadManager.enqueue(request)
 
@@ -196,13 +208,39 @@ class HomeFragment : BaseFragment(), HomeView {
                     activity?.let {
                         Toast.makeText(
                             it.applicationContext,
-                            "Download Complete", Toast.LENGTH_LONG
+                            "Download Complete",
+                            Toast.LENGTH_LONG
                         ).show()
+
+                        items?.let { downloadData ->
+                            mPresenter.saveDownloadItems(downloadData)
+                        }
                     }
                 }
             }
         }
         activity?.registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(requireContext(), "Granted success", Toast.LENGTH_LONG)
+                } else {
+                    // explain user
+                }
+                return
+            }
+            else -> {
+
+            }
+        }
     }
 
     private fun checkPermission() {
@@ -230,26 +268,26 @@ class HomeFragment : BaseFragment(), HomeView {
         Log.e("Home Fragment: ", error)
     }
 
-     override fun onResume() {
-         if (Util.SDK_INT < 24 || exoPlayer == null) {
-             setUpMediaPlayer()
-         }
-         super.onResume()
-     }
+    fun initializePlayer(audio: String) {
+        activity?.let {
+            exoPlayer = SimpleExoPlayer.Builder(it.applicationContext).build()
+            // Produces DataSource instances through which media data is loaded.
+            val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
+                it.applicationContext, Util.getUserAgent(it.applicationContext, "Podcast")
+            )
 
-     override fun onPause() {
-         if (Util.SDK_INT < 24) {
-             releasePlayer(exoPlayer)
-         }
-         super.onPause()
-     }
+            // This is the MediaSource representing the media to be played.
+            val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.parse(audio))
 
-     override fun onStop() {
-         if (Util.SDK_INT >= 24) {
-             releasePlayer(exoPlayer)
-         }
-         super.onStop()
-     }
+            exoPlayer?.playWhenReady = playWhenReady
+            exoPlayer?.addListener(progressBarListener)
+
+            // Prepare the player with the source.
+            exoPlayer?.prepare(mediaSource)
+        }
+
+    }
 
     private fun setUpMediaPlayer() {
         activity?.let {
@@ -258,15 +296,41 @@ class HomeFragment : BaseFragment(), HomeView {
                 SimpleExoPlayer.Builder(it.applicationContext, defaultRenderersFactory).build()
             val userAgent = Util.getUserAgent(it.applicationContext, "The PodCast App")
             val mediaSource = ExtractorMediaSource(
-                Uri.parse("https://storage.googleapis.com/exoplayer-test-media-0/Jazz_In_Paris.mp3"),
+                Uri.parse("https://www.listennotes.com/e/p/02f0123246c944e289ee2bb90804e41b"),
                 DefaultDataSourceFactory(it.applicationContext, userAgent),
                 DefaultExtractorsFactory(),
                 null,
                 null
             )
-            exoPlayer.prepare(mediaSource)
+            exoPlayer?.addListener(progressBarListener)
+            exoPlayer?.prepare(mediaSource)
+        }
+
+    }
+
+    override fun onDestroy() {
+        releasePlayer()
+        super.onDestroy()
+    }
+
+    fun releasePlayer() {
+        if (exoPlayer != null) {
+            playWhenReady = exoPlayer!!.playWhenReady
+            playbackPosition = exoPlayer!!.currentPosition
+            exoPlayer?.removeListener(progressBarListener)
+            exoPlayer?.release()
+            exoPlayer = null
         }
     }
 
 
+    fun move30SecForward() {
+        playbackPosition += forwardSpeed
+        exoPlayer?.seekTo(playbackPosition)
+    }
+
+    fun move15SecBackward() {
+        playbackPosition -= backwardSpeed
+        exoPlayer?.seekTo(playbackPosition)
+    }
 }

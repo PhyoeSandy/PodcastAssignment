@@ -9,5 +9,7 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
  */
 interface DetailsView : BaseView {
     fun showDetails(data: DetailsResponse)
-    fun playMusic(audio: String)
+    fun playMusic()
+    fun skip15SecBackward()
+    fun skip30SecForward()
 }

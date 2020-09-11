@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
+import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.DownloadPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.DownloadView
 import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
@@ -27,13 +28,8 @@ class DownloadPresenterImpl : DownloadPresenter, AbstractBasePresenter<DownloadV
         mView?.navigateToPodcastDetails(podcastId)
     }
 
-    override fun onTapDownload(podcastId: String) {  }
-
-        /*mPodcastModel.getDetailsPodcastsById(podcastId).subscribe {
-            it?.let {
-                mView?.downloadingAudio(it.audio)
-            }
-        }*/
+    override fun onTapDownload(item: ItemVO) {
+    }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
         mPodcastModel.getDownloadsPodcasts().observe(lifecycleOwner,

@@ -12,7 +12,7 @@
             android:id="@+id/ivPodcast"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="@drawable/background_gray"
+            android:background="@drawable/background_white"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

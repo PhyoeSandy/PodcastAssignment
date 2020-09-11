@@ -10,5 +10,5 @@
     <color name="textColorSecondary">#252525</color>
     <color name="textColorTertary">#979797</color>
     <color name="colorProgressBar">#bae2fe</color>
-
+    <color name="colorSecondary">#E91E63</color>
 </resources>

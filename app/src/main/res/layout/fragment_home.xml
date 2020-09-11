@@ -58,7 +58,6 @@
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:background="@drawable/noti_point" />
 
-
                  <include
                      android:id="@+id/vpLargeMedia"
                      layout="@layout/player_view"
@@ -79,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/vpLargeMedia"
-                    android:backgroundTint="#E7E7ED"
+                    android:backgroundTint="#f6f6f8"
                     app:cardCornerRadius="@dimen/margin_medium_2"
                     app:cardElevation="@dimen/margin_small"
                     app:cardUseCompatPadding="true"

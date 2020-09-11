@@ -13,8 +13,4 @@ data class ItemVO(
     @SerializedName("data") val data: DataVO,
 
     var status: Int = 0 // 1 for download
-
-    /* val added_at_ms: Long,
-     val notes: String,
-     val type: String*/
 )

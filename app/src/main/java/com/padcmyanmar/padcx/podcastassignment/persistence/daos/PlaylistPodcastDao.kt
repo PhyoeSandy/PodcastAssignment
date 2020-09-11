@@ -1,11 +1,9 @@
 package com.padcmyanmar.padcx.podcastassignment.persistence.daos
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -26,6 +24,9 @@ interface PlaylistPodcastDao {
     fun getAllDownloadPlaylists(): LiveData<List<ItemVO>>
 
     @Query("SELECT * FROM playlist WHERE id=:id")
-    fun getPlaylistById(id: String): LiveData<ItemVO>
+    fun getPlaylistById(id: Int): LiveData<ItemVO>
+
+    @Query("UPDATE playlist SET status =1 WHERE id=:id")
+    fun updateStatusDownload(id: Int)
 
 }

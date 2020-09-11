@@ -2,6 +2,7 @@ package com.padcmyanmar.padcx.podcastassignment.views.viewholders
 
 import android.view.View
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.shared.extensions.loadImage
 import com.padcmyanmar.padcx.shared.views.viewholders.BaseViewHolder
 import kotlinx.android.synthetic.main.item_category.view.*
 
@@ -14,5 +15,6 @@ class CategoryViewHolder(itemView: View) : BaseViewHolder<CategoryVO>(itemView) 
         mData = data
 
         itemView.tvCategoryName.text = data.name
+        itemView.ivCategory.loadImage(data.image)
     }
 }

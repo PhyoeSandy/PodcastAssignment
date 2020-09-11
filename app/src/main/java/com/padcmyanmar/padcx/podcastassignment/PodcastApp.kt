@@ -8,6 +8,7 @@ import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
  * on 9/2/2020.
  */
 class PodcastApp : Application() {
+
     override fun onCreate() {
         super.onCreate()
         PodcastModelImpl.initDatabase(applicationContext)

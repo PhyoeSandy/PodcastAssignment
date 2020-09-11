@@ -14,8 +14,10 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.SearchPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.SearchPresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.SearchView
+import com.padcmyanmar.padcx.shared.extensions.loadImage
 import com.padcmyanmar.padcx.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.item_category.*
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -74,8 +76,9 @@ class SearchFragment : BaseFragment(), SearchView {
         mCategoryAdapter.setNewData(categories.toMutableList())
     }
 
-    override fun bindCategoryName(category: CategoryVO) {
+    override fun bindData(category: CategoryVO) {
         tvCategory.text = category.name
+        ivImage.loadImage(category.image)
     }
 
     override fun showErrorMessage(error: String) {
