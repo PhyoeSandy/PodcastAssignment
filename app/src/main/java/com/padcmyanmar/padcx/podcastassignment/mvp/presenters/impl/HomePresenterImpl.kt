@@ -54,7 +54,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
     }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
-        //loadDataFromAPI()
+        loadDataFromAPI()
 
         this.lifecycleOwner = lifecycleOwner
 

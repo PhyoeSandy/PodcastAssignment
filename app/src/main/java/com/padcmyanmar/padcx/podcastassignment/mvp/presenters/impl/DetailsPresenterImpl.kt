@@ -17,7 +17,7 @@ class DetailsPresenterImpl : AbstractBasePresenter<DetailsView>(), DetailsPresen
     val mPodcastModel: PodcastModel = PodcastModelImpl
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: String) {
-         /*mPodcastModel.getDetailsAndSaveToDb(podcastId, {}, {
+       /*  mPodcastModel.getDetailsAndSaveToDb(podcastId, {}, {
              mView?.showErrorMessage(it)
          })*/
 
