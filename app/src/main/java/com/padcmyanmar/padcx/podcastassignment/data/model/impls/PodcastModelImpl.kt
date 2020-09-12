@@ -81,19 +81,6 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
         return mDB.playlistDao().getPlaylistById(id)
     }
 
-    /*override fun getDetailsPodcasts(id: String): LiveData<DetailsResponse> {
-        return mDB.detailsDao().getDetailsById(id)
-    }*/
-
-    /*override fun getDetailsPodcastsById(id: String): LiveData<DetailsResponse> {
-        return mDB.playlistDao().getPlaylistById(id)
-    }*/
-
-   /* override fun getPlayListById(id: Int): LiveData<ItemVO> {
-       // return mDB.playlistDao().getPlaylistById(id)
-        return null
-    }*/
-
     override fun getDownloadsPodcasts(): LiveData<List<ItemVO>> {
         return mDB.playlistDao().getAllDownloadPlaylists()
     }

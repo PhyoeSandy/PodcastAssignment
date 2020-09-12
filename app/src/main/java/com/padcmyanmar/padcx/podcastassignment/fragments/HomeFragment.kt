@@ -112,7 +112,6 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupPresenter()
         setupRecyclerView()
         setupViewPod()
@@ -147,8 +146,8 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun displayRandomPodcast(podcast: RandomPodcastVO) {
         exoPlayerViewPod.setData(podcast)
-        initializePlayer(podcast.audio)
-        //setUpMediaPlayer()
+        //initializePlayer(podcast.audio)
+        setUpMediaPlayer(podcast.audio)
     }
 
     @SuppressLint("NewApi")
@@ -289,14 +288,14 @@ class HomeFragment : BaseFragment(), HomeView {
 
     }
 
-    private fun setUpMediaPlayer() {
+    private fun setUpMediaPlayer(audio: String) {
         activity?.let {
             val defaultRenderersFactory = DefaultRenderersFactory(it.applicationContext)
             exoPlayer =
                 SimpleExoPlayer.Builder(it.applicationContext, defaultRenderersFactory).build()
             val userAgent = Util.getUserAgent(it.applicationContext, "The PodCast App")
             val mediaSource = ExtractorMediaSource(
-                Uri.parse("https://www.listennotes.com/e/p/02f0123246c944e289ee2bb90804e41b"),
+                Uri.parse(audio),
                 DefaultDataSourceFactory(it.applicationContext, userAgent),
                 DefaultExtractorsFactory(),
                 null,

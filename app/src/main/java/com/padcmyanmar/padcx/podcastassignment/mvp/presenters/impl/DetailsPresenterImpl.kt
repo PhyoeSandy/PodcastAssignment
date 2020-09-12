@@ -22,15 +22,6 @@ class DetailsPresenterImpl : AbstractBasePresenter<DetailsView>(), DetailsPresen
             Observer {
                 it?.let { mView?.showDetails(it) }
             })
-
-        /*mPodcastModel.getDetailsPodcastsById(podcastId).observe(lifecycleOwner,
-            Observer {
-                it?.let { mView?.showDetails(it) }
-            })*/
-
-        /*mPodcastModel.getDetailsAndSaveToDb(podcastId, {}, {
-          mView?.showErrorMessage(it)
-      })*/
     }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {}

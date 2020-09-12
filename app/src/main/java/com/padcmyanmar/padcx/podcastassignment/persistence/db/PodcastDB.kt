@@ -47,6 +47,4 @@ abstract class PodcastDB : RoomDatabase() {
     abstract fun podcastDao() : RandomPodcastDao
     abstract fun categoryDao() : CategoryDao
     abstract fun playlistDao() : PlaylistPodcastDao
-    //abstract fun detailsDao() : DetailsDao
-
 }

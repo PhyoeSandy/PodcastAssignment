@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
+import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -106,6 +109,7 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
         tvDescription.text = Html.fromHtml(data.data.description, 0)
         ivPodcast.loadImage(data.data.image)
         mSmallPlayerViewPod.setData(data.data.audio_length_sec.toLong())
+        initializePlayer(data.data.audio)
     }
 
     override fun playMusic() {
@@ -204,6 +208,24 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
         // Prepare the player with the source.
         exoPlayer?.prepare(mediaSource)
     }
+
+    /*private fun setUpMediaPlayer(audio: String) {
+        activity?.let {
+            val defaultRenderersFactory = DefaultRenderersFactory(it.applicationContext)
+            exoPlayer =
+                SimpleExoPlayer.Builder(it.applicationContext, defaultRenderersFactory).build()
+            val userAgent = Util.getUserAgent(it.applicationContext, "The PodCast App")
+            val mediaSource = ExtractorMediaSource(
+                Uri.parse(audio),
+                DefaultDataSourceFactory(it.applicationContext, userAgent),
+                DefaultExtractorsFactory(),
+                null,
+                null
+            )
+            exoPlayer?.addListener(progressBarListener)
+            exoPlayer?.prepare(mediaSource)
+        }
+    }*/
 
     override fun onDestroy() {
         releasePlayer()
