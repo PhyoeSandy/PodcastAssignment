@@ -19,7 +19,7 @@ class DownloadPodcastViewHolder(val delegate: PodCastItemDelegate, itemView: Vie
     init {
         itemView.setOnClickListener {
             mData?.let {
-                delegate.onTapPodcast(it.data.id)
+                delegate.onTapPodcast(it.id)
             }
         }
     }

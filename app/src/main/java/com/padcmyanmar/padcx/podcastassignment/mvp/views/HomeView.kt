@@ -12,7 +12,7 @@ interface HomeView : BaseView {
     fun displayPlayListInfo(playlist: List<ItemVO>)
     fun displayRandomPodcast(podcast: RandomPodcastVO)
     fun bindDescription(description: String)
-    fun navigateToPodcastDetails(podcastId: String)
+    fun navigateToPodcastDetails(podcastId: Int)
     fun playMusic()
     fun downloadingAudio(data: ItemVO)
     fun skip15SecBackward()

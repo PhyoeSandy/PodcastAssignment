@@ -2,10 +2,9 @@ package com.padcmyanmar.padcx.podcastassignment.data.model
 
 import androidx.lifecycle.LiveData
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
-import io.reactivex.Observable
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -26,7 +25,7 @@ interface PodcastModel {
 
     fun getPlayListPodcasts() : LiveData<List<ItemVO>>
 
-    fun getDetailsPodcasts(id: String) : LiveData<DetailsResponse>
+    fun getDetailsPodcasts(id: Int) : LiveData<ItemVO>
     //fun getDetailsPodcastsById(id: String) : LiveData<DetailsResponse>
 
     //fun getPlayListById(id: Int) : LiveData<ItemVO>

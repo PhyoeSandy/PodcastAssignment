@@ -29,9 +29,9 @@ interface PodcastApi {
         @Query(SORT) sort: String
         ): Observable<PlayListResponse>
 
-    @GET(DETAILS_EPISODE)
+    @GET("$DETAILS_EPISODE/{id}")
     fun getDetailsEpisode(
-        @Header(PARAM_API_KEY) apiKey: String, @Query("id") id: String
+        @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String
     ): Observable<DetailsResponse>
 
 }

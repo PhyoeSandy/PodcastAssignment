@@ -38,19 +38,8 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         Log.d("onTapReload", "onTapReload")
     }
 
-    override fun onTapPodcast(podcastId: String) {
-        mView?.navigateToPodcastDetails(podcastId)
-    }
-
     override fun onTapDownload(item: ItemVO) {
         mView?.downloadingAudio(item)
-
-        /* mPodcastModel.getPlayListById(item.id).observe(lifecycleOwner, Observer {
-            it.let {
-
-            }
-        })*/
-
     }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
@@ -75,6 +64,10 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
 
     override fun onTapPlayButton() {
         mView?.playMusic()
+    }
+
+    override fun onTapPodcast(podcastId: Int) {
+        mView?.navigateToPodcastDetails(podcastId)
     }
 
     private fun loadDataFromAPI() {

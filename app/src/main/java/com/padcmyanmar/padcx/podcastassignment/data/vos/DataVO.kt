@@ -2,9 +2,7 @@ package com.padcmyanmar.padcx.podcastassignment.data.vos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
-import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.PodcastTypeConverter
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -20,5 +18,4 @@ data class DataVO(
     @SerializedName("audio_length_sec") val audio_length_sec: Int,
     @SerializedName("description") val description: String,
     @SerializedName("title") val title: String
-
 )

@@ -1,6 +1,6 @@
 package com.padcmyanmar.padcx.podcastassignment.mvp.views
 
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
+import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.shared.mvp.views.BaseView
 
 /**
@@ -8,7 +8,7 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
  * on 8/23/2020.
  */
 interface DetailsView : BaseView {
-    fun showDetails(data: DetailsResponse)
+    fun showDetails(data: ItemVO)
     fun playMusic()
     fun skip15SecBackward()
     fun skip30SecForward()

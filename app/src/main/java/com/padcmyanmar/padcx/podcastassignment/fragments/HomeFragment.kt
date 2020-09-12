@@ -88,10 +88,10 @@ class HomeFragment : BaseFragment(), HomeView {
             if (playbackState == ExoPlayer.STATE_BUFFERING) {
                 playbackPosition = TimeUnit.MILLISECONDS.toSeconds(exoPlayer!!.currentPosition)
 
-                tvTime.text = String.format(
+                /*tvTime.text = String.format(
                     "%02d : %02d", (playbackPosition % 3600) / 60,
                     (playbackPosition % 3600) % 60
-                )
+                )*/
 
                 progressbar.max = (exoPlayer?.duration)!!.toInt()
                 progressbar.progress =
@@ -156,7 +156,7 @@ class HomeFragment : BaseFragment(), HomeView {
         tvDetails.text = Html.fromHtml(description, 0)
     }
 
-    override fun navigateToPodcastDetails(podcastId: String) {
+    override fun navigateToPodcastDetails(podcastId: Int) {
         startActivity(activity?.let {
             PodCastDetailsActivity.newIntent(it, podcastId)
         })

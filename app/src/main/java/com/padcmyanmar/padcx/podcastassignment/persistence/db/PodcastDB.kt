@@ -11,10 +11,7 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.PodcastVO
 import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
-import com.padcmyanmar.padcx.podcastassignment.persistence.daos.CategoryDao
-import com.padcmyanmar.padcx.podcastassignment.persistence.daos.DetailsDao
-import com.padcmyanmar.padcx.podcastassignment.persistence.daos.PlaylistPodcastDao
-import com.padcmyanmar.padcx.podcastassignment.persistence.daos.RandomPodcastDao
+import com.padcmyanmar.padcx.podcastassignment.persistence.daos.*
 import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.DataTypeConverter
 import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.PodcastTypeConverter
 
@@ -25,7 +22,7 @@ import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.Podcas
 @Database(entities = [PodcastVO::class, CategoryVO::class,
     DataVO::class, ItemVO::class,
     RandomPodcastVO::class,
-    DetailsResponse::class], version = 17, exportSchema = false)
+    DetailsResponse::class], version = 19, exportSchema = false)
 @TypeConverters(PodcastTypeConverter::class, DataTypeConverter::class)
 abstract class PodcastDB : RoomDatabase() {
     companion object {
@@ -50,6 +47,6 @@ abstract class PodcastDB : RoomDatabase() {
     abstract fun podcastDao() : RandomPodcastDao
     abstract fun categoryDao() : CategoryDao
     abstract fun playlistDao() : PlaylistPodcastDao
-    abstract fun detailsDao() : DetailsDao
+    //abstract fun detailsDao() : DetailsDao
 
 }

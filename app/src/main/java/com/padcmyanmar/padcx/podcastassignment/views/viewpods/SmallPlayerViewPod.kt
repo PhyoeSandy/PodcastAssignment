@@ -33,7 +33,7 @@ class SmallPlayerViewPod @JvmOverloads constructor(
 
     fun setData(duration: Long) {
         tvStartTime.text = "00:00"
-        tvEndTime.text = convertTime(TimeUnit.MILLISECONDS.toSeconds(duration).toInt())
+        tvEndTime.text = "00:00" //convertTime(TimeUnit.MILLISECONDS.toSeconds(duration).toInt())
     }
 
     private fun setupListener() {

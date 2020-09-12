@@ -5,10 +5,8 @@ import com.padcmyanmar.padcx.podcastassignment.data.model.BaseModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.utils.*
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -56,7 +54,7 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
             })
     }
 
-   /* override fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
+    /*override fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
         mPodcastApi.getDetailsEpisode(PARAM_API_VALUE, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -79,9 +77,13 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
         return mDB.playlistDao().getAllPlaylists()
     }
 
-    override fun getDetailsPodcasts(id: String): LiveData<DetailsResponse> {
-        return mDB.detailsDao().getDetailsById(id)
+    override fun getDetailsPodcasts(id: Int): LiveData<ItemVO> {
+        return mDB.playlistDao().getPlaylistById(id)
     }
+
+    /*override fun getDetailsPodcasts(id: String): LiveData<DetailsResponse> {
+        return mDB.detailsDao().getDetailsById(id)
+    }*/
 
     /*override fun getDetailsPodcastsById(id: String): LiveData<DetailsResponse> {
         return mDB.playlistDao().getPlaylistById(id)

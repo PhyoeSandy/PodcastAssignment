@@ -10,5 +10,5 @@ import com.padcmyanmar.padcx.shared.mvp.presenters.BasePresenter
  * on 8/23/2020.
  */
 interface DetailsPresenter : PlayerViewItemDelegate, BasePresenter<DetailsView> {
-    fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: String)
+    fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: Int)
 }

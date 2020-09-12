@@ -95,7 +95,7 @@ class DownloadFragment : BaseFragment(), DownloadView {
         mCategoryAdapter.setNewData(categories.toMutableList())
     }
 
-    override fun navigateToPodcastDetails(podcastId: String) {
+    override fun navigateToPodcastDetails(podcastId: Int) {
         startActivity(PodCastDetailsActivity.newIntent(requireContext(), podcastId))
     }
 

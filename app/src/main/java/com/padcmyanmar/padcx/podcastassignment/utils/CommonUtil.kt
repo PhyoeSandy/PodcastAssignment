@@ -23,7 +23,6 @@ const val SORT_VALUE = "recent_added_first"
 const val CATEGORIES_LIST = "genres"
 
 const val DETAILS_EPISODE = "episodes"
-const val DETAILS_ID = "4d82e50314174754a3b603912448e812"
 
 
 

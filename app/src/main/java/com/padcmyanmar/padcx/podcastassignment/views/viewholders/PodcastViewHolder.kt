@@ -19,7 +19,7 @@ class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) :
     init {
         itemView.setOnClickListener {
             mData?.let {
-                delegate.onTapPodcast(it.data.id)
+                delegate.onTapPodcast(it.id) // it.data.id
             }
         }
 
@@ -37,5 +37,6 @@ class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) :
         itemView.ivPodcast.loadImage(item.data.image)
         itemView.tvTitle.text = Html.fromHtml(item.data.description, 0)
         itemView.tvTime.text = convertTime(item.data.audio_length_sec)
+        //itemView.tvCategoryName.text = item.data.
     }
 }

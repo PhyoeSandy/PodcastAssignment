@@ -8,6 +8,6 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
  */
 interface PodCastItemDelegate {
 
-    fun onTapPodcast(podcastId: String)
+    fun onTapPodcast(podcastId: Int)
     fun onTapDownload(item: ItemVO)
 }

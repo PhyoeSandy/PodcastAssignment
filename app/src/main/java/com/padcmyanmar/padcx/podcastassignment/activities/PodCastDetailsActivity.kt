@@ -16,17 +16,15 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.padcmyanmar.padcx.podcastassignment.R
+import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.DetailsPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.DetailsPresenterImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.DetailsView
-import com.padcmyanmar.padcx.podcastassignment.network.responses.DetailsResponse
 import com.padcmyanmar.padcx.podcastassignment.views.viewpods.SmallPlayerViewPod
 import com.padcmyanmar.padcx.shared.activities.BaseActivity
+import com.padcmyanmar.padcx.shared.extensions.loadImage
 import kotlinx.android.synthetic.main.activity_podcast_details.*
-import kotlinx.android.synthetic.main.activity_podcast_details.tvDescription
-import kotlinx.android.synthetic.main.activity_podcast_details.tvTitle
-import kotlinx.android.synthetic.main.playe_view_small.*
-import kotlinx.android.synthetic.main.player_view.*
+import kotlinx.android.synthetic.main.playe_view_small.tvStartTime
 import kotlinx.android.synthetic.main.player_view.btnPlay
 import kotlinx.android.synthetic.main.player_view.progressbar
 import java.util.concurrent.TimeUnit
@@ -40,7 +38,7 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
     companion object {
         const val IE_PODCAST_ID = "IE_PODCAST_ID"
 
-        fun newIntent(context: Context, podcastId: String): Intent {
+        fun newIntent(context: Context, podcastId: Int): Intent {
             val intent = Intent(context, PodCastDetailsActivity::class.java)
             intent.putExtra(IE_PODCAST_ID, podcastId)
             return intent
@@ -67,10 +65,10 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
             if (playbackState == ExoPlayer.STATE_BUFFERING) {
                 playbackPosition = TimeUnit.MILLISECONDS.toSeconds(exoPlayer!!.currentPosition)
 
-                tvStartTime.text = String.format(
+                /*tvStartTime.text = String.format(
                     "%02d : %02d", (playbackPosition % 3600) / 60,
                     (playbackPosition % 3600) % 60
-                )
+                )*/
 
                 progressbar.max = (exoPlayer?.duration)!!.toInt()
                 progressbar.progress =
@@ -88,7 +86,7 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
         setupPresenter()
         setupViewPod()
 
-        intent.getStringExtra(IE_PODCAST_ID)?.let { mPresenter.onUiReady(this, it) }
+        intent.getIntExtra(IE_PODCAST_ID,0)?.let { mPresenter.onUiReady(this, it) }
     }
 
     private fun setupViewPod() {
@@ -103,10 +101,11 @@ class PodCastDetailsActivity : BaseActivity(), DetailsView {
     }
 
     @SuppressLint("NewApi")
-    override fun showDetails(data: DetailsResponse) {
-        tvTitle.text = data.podcast.title
-        tvDescription.text = Html.fromHtml(data.description, 0)
-        mSmallPlayerViewPod.setData(data.audio_length_sec.toLong())
+    override fun showDetails(data: ItemVO) {
+        tvTitle.text = data.data.podcast.title
+        tvDescription.text = Html.fromHtml(data.data.description, 0)
+        ivPodcast.loadImage(data.data.image)
+        mSmallPlayerViewPod.setData(data.data.audio_length_sec.toLong())
     }
 
     override fun playMusic() {

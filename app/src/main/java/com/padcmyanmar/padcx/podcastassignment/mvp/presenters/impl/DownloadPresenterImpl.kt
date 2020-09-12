@@ -24,7 +24,7 @@ class DownloadPresenterImpl : DownloadPresenter, AbstractBasePresenter<DownloadV
         //mView?.displayDownloadPodcastList()
     }
 
-    override fun onTapPodcast(podcastId: String) {
+    override fun onTapPodcast(podcastId: Int) {
         mView?.navigateToPodcastDetails(podcastId)
     }
 

@@ -16,20 +16,21 @@ import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
 class DetailsPresenterImpl : AbstractBasePresenter<DetailsView>(), DetailsPresenter {
     val mPodcastModel: PodcastModel = PodcastModelImpl
 
-    override fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: String) {
-       /*  mPodcastModel.getDetailsAndSaveToDb(podcastId, {}, {
-             mView?.showErrorMessage(it)
-         })*/
+    override fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: Int) {
 
-         mPodcastModel.getDetailsPodcasts(podcastId).observe(lifecycleOwner,
-             Observer {
-                 it?.let { mView?.showDetails(it) }
-             })
+        mPodcastModel.getDetailsPodcasts(podcastId).observe(lifecycleOwner,
+            Observer {
+                it?.let { mView?.showDetails(it) }
+            })
 
         /*mPodcastModel.getDetailsPodcastsById(podcastId).observe(lifecycleOwner,
             Observer {
                 it?.let { mView?.showDetails(it) }
             })*/
+
+        /*mPodcastModel.getDetailsAndSaveToDb(podcastId, {}, {
+          mView?.showErrorMessage(it)
+      })*/
     }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {}

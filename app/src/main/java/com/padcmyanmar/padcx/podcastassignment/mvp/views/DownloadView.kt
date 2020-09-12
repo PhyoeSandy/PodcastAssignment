@@ -11,5 +11,5 @@ import com.padcmyanmar.padcx.shared.mvp.views.BaseView
 interface DownloadView : BaseView {
     fun displayDownloadPodcastList(downloads: List<ItemVO>)
     fun displayCategoryList(categories: List<CategoryVO>)
-    fun navigateToPodcastDetails(podcastId: String)
+    fun navigateToPodcastDetails(podcastId: Int)
 }
