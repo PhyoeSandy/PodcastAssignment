@@ -1,6 +1,7 @@
 package com.padcmyanmar.padcx.podcastassignment
 
 import android.app.Application
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
 
 /**
@@ -9,9 +10,15 @@ import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
  */
 class PodcastApp : Application() {
 
+    companion object {
+        var exoPlayer: SimpleExoPlayer? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
         PodcastModelImpl.initDatabase(applicationContext)
+
+        exoPlayer = SimpleExoPlayer.Builder(applicationContext).build()
     }
 
 

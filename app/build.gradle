@@ -78,6 +78,9 @@ dependencies {
 
     implementation rootProject.ext.libraries.workManager
 
+    implementation rootProject.ext.libraries.firebaseAnalytics
+    implementation rootProject.ext.libraries.realtimedb
+
     testImplementation rootProject.ext.libraries.Junit
     testImplementation rootProject.ext.libraries.Ktx
     testImplementation rootProject.ext.libraries.JunitKtx

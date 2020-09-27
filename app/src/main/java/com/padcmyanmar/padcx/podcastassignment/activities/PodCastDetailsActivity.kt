@@ -8,12 +8,9 @@ import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -27,7 +24,6 @@ import com.padcmyanmar.padcx.podcastassignment.views.viewpods.SmallPlayerViewPod
 import com.padcmyanmar.padcx.shared.activities.BaseActivity
 import com.padcmyanmar.padcx.shared.extensions.loadImage
 import kotlinx.android.synthetic.main.activity_podcast_details.*
-import kotlinx.android.synthetic.main.playe_view_small.tvStartTime
 import kotlinx.android.synthetic.main.player_view.btnPlay
 import kotlinx.android.synthetic.main.player_view.progressbar
 import java.util.concurrent.TimeUnit

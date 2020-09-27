@@ -35,4 +35,5 @@ abstract class BaseModel {
     fun initDatabase(context: Context) {
         mDB = PodcastDB.getDBInstance(context)
     }
+
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "664750469743",
+    "firebase_url": "https://podcast-app-38cb2.firebaseio.com",
+    "project_id": "podcast-app-38cb2",
+    "storage_bucket": "podcast-app-38cb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664750469743:android:4e527a80008b4e6540139a",
+        "android_client_info": {
+          "package_name": "com.padcmyanmar.padcx.podcastassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664750469743-flu0aijue2jttffmqp56q6kptole7aat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2d3o3DxLZmVaIWlJ8g8O4a0pHaqvH6is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664750469743-flu0aijue2jttffmqp56q6kptole7aat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

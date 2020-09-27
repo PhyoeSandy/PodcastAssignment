@@ -1,6 +1,8 @@
 package com.padcmyanmar.padcx.podcastassignment.network
 
-import com.padcmyanmar.padcx.podcastassignment.network.responses.*
+import com.padcmyanmar.padcx.podcastassignment.network.responses.CategoryListResponse
+import com.padcmyanmar.padcx.podcastassignment.network.responses.PlayListResponse
+import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.podcastassignment.utils.*
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -29,9 +31,10 @@ interface PodcastApi {
         @Query(SORT) sort: String
         ): Observable<PlayListResponse>
 
-    @GET("$DETAILS_EPISODE/{id}")
+    /*@GET("$DETAILS_EPISODE/{id}")
     fun getDetailsEpisode(
         @Header(PARAM_API_KEY) apiKey: String, @Path("id") id: String
-    ): Observable<DetailsResponse>
+    ): Observable<DetailsResponse>*/
+
 
 }

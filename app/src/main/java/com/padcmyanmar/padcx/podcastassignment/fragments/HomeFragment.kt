@@ -30,6 +30,7 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
+import com.padcmyanmar.padcx.podcastassignment.PodcastApp.Companion.exoPlayer
 import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
 import com.padcmyanmar.padcx.podcastassignment.adapters.PodCastAdapter
@@ -73,7 +74,7 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mEmptyViewPod: EmptyViewPod
     private lateinit var exoPlayerViewPod: PlayerViewPod
 
-    var exoPlayer: SimpleExoPlayer? = null
+   // var exoPlayer: SimpleExoPlayer? = null
     private var playbackPosition: Long = 0
     private val forwardSpeed = 30000 //30sec
     private val backwardSpeed = 15000 //15sec
@@ -146,8 +147,8 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun displayRandomPodcast(podcast: RandomPodcastVO) {
         exoPlayerViewPod.setData(podcast)
-        //initializePlayer(podcast.audio)
-        setUpMediaPlayer(podcast.audio)
+        initializePlayer(podcast.audio)
+        //setUpMediaPlayer(podcast.audio)
     }
 
     @SuppressLint("NewApi")
@@ -269,7 +270,6 @@ class HomeFragment : BaseFragment(), HomeView {
 
     fun initializePlayer(audio: String) {
         activity?.let {
-            exoPlayer = SimpleExoPlayer.Builder(it.applicationContext).build()
             // Produces DataSource instances through which media data is loaded.
             val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                 it.applicationContext, Util.getUserAgent(it.applicationContext, "Podcast")
@@ -285,7 +285,6 @@ class HomeFragment : BaseFragment(), HomeView {
             // Prepare the player with the source.
             exoPlayer?.prepare(mediaSource)
         }
-
     }
 
     private fun setUpMediaPlayer(audio: String) {
@@ -318,7 +317,7 @@ class HomeFragment : BaseFragment(), HomeView {
             playbackPosition = exoPlayer!!.currentPosition
             exoPlayer?.removeListener(progressBarListener)
             exoPlayer?.release()
-            exoPlayer = null
+            //exoPlayer = null
         }
     }
 

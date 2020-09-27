@@ -24,8 +24,4 @@ const val CATEGORIES_LIST = "genres"
 
 const val DETAILS_EPISODE = "episodes"
 
-
-
-
-
 const val EM_NO_INTERNET_CONNECTION = "Internet may not be available."

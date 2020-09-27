@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers
  * on 9/2/2020.
  */
 object PodcastModelImpl : PodcastModel, BaseModel() {
+
     override fun getRandomPodcastAndSaveToDb(onSuccess: () -> Unit, onError: (String) -> Unit) {
         mPodcastApi.getRandomPodcast(PARAM_API_VALUE)
             .subscribeOn(Schedulers.io())
@@ -53,17 +54,6 @@ object PodcastModelImpl : PodcastModel, BaseModel() {
                 onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
     }
-
-    /*override fun getDetailsAndSaveToDb(id: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
-        mPodcastApi.getDetailsEpisode(PARAM_API_VALUE, id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mDB.detailsDao().insertDetails(it)
-            }, {
-                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
-            })
-    }*/
 
     override fun getRandomPodcast(): LiveData<RandomPodcastVO> {
         return mDB.podcastDao().getRandomPodcast()
