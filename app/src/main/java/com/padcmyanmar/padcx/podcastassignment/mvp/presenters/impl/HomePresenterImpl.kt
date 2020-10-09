@@ -3,7 +3,9 @@ package com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.padcmyanmar.padcx.podcastassignment.data.model.FirebasePodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
+import com.padcmyanmar.padcx.podcastassignment.data.model.impls.FirebasePodcastModelImpl
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.HomePresenter
@@ -15,7 +17,7 @@ import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
  * on 8/28/2020.
  */
 class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
-    val mPodcastModel: PodcastModel = PodcastModelImpl
+    val mPodcastModel: FirebasePodcastModel = FirebasePodcastModelImpl
     lateinit var lifecycleOwner: LifecycleOwner
 
     override fun onTap15secBackward() {
@@ -71,11 +73,11 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
     }
 
     private fun loadDataFromAPI() {
-        mPodcastModel.getRandomPodcastAndSaveToDb({}, {
+        mPodcastModel.getRandomPodcast({}, {
             mView?.showErrorMessage(it)
         })
 
-        mPodcastModel.getPlayListAndSaveToDb({}, {
+        mPodcastModel.getPlayListPodcasts({}, {
             mView?.showErrorMessage(it)
         })
     }

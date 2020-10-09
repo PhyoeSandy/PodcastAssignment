@@ -26,6 +26,7 @@ ext {
     workManagerVersion = "2.4.0"
     firebaseAnalyticsVersion = "17.5.0"
     realtimedbVersion = "19.4.0"
+    cloudFirestoreVersion = "21.6.0"
 
     libraries = [
             glide              : "com.github.bumptech.glide:glide:$glideVersion",
@@ -58,6 +59,7 @@ ext {
             exoplayerCore      : "com.google.android.exoplayer:exoplayer-core:$exoplayerVersion",
             workManager        : "androidx.work:work-runtime:$workManagerVersion",
             firebaseAnalytics  : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion",
-            realtimedb         : "com.google.firebase:firebase-database-ktx:$realtimedbVersion"
+            realtimedb         : "com.google.firebase:firebase-database-ktx:$realtimedbVersion",
+            cloudFirestore: "com.google.firebase:firebase-firestore-ktx:$cloudFirestoreVersion"
     ]
 }

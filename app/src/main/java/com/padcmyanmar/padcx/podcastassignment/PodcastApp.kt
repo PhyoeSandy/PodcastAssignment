@@ -2,6 +2,7 @@ package com.padcmyanmar.padcx.podcastassignment
 
 import android.app.Application
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.padcmyanmar.padcx.podcastassignment.data.model.impls.FirebasePodcastModelImpl
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
 
 /**
@@ -16,7 +17,8 @@ class PodcastApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PodcastModelImpl.initDatabase(applicationContext)
+        //PodcastModelImpl.initDatabase(applicationContext)
+        FirebasePodcastModelImpl.initDatabase(applicationContext)
 
         exoPlayer = SimpleExoPlayer.Builder(applicationContext).build()
     }
