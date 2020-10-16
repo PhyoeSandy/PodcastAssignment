@@ -18,7 +18,7 @@ import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
 class DetailsPresenterImpl : AbstractBasePresenter<DetailsView>(), DetailsPresenter {
     val mPodcastModel: FirebasePodcastModel = FirebasePodcastModelImpl
 
-    override fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: Int) {
+    override fun onUiReady(lifecycleOwner: LifecycleOwner, podcastId: String) {
 
         mPodcastModel.getDetailsPodcasts(podcastId).observe(lifecycleOwner,
             Observer {

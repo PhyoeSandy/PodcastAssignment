@@ -19,6 +19,9 @@ interface CategoryDao {
     @Query("SELECT * FROM category")
     fun getAllCategories() : LiveData<List<CategoryVO>>
 
+    @Query("DELETE FROM category")
+    fun deleteAllCategories()
+
    /* @Query("SELECT name FROM category WHERE id=:id")
     fun getGenreById(id: Int) : LiveData<CategoryVO>*/
 }

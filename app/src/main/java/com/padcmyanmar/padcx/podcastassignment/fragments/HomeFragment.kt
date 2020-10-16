@@ -34,6 +34,7 @@ import com.padcmyanmar.padcx.podcastassignment.PodcastApp.Companion.exoPlayer
 import com.padcmyanmar.padcx.podcastassignment.R
 import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
 import com.padcmyanmar.padcx.podcastassignment.adapters.PodCastAdapter
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.HomePresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.HomePresenterImpl
@@ -79,7 +80,7 @@ class HomeFragment : BaseFragment(), HomeView {
     private val forwardSpeed = 30000 //30sec
     private val backwardSpeed = 15000 //15sec
     private var isPlaying = false
-    var items: ItemVO? = null
+    var items: DataVO? = null
     var playWhenReady = false
 
     val progressBarListener = object : Player.EventListener {
@@ -141,11 +142,7 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
-    override fun displayPlayListInfo(playlist: List<ItemVO>) {
-        mPodCastAdapter.setNewData(playlist.toMutableList())
-    }
-
-    override fun displayRandomPodcast(podcast: RandomPodcastVO) {
+    override fun displayRandomPodcast(podcast: DataVO) {
         exoPlayerViewPod.setData(podcast)
         initializePlayer(podcast.audio)
         //setUpMediaPlayer(podcast.audio)
@@ -156,7 +153,7 @@ class HomeFragment : BaseFragment(), HomeView {
         tvDetails.text = Html.fromHtml(description, 0)
     }
 
-    override fun navigateToPodcastDetails(podcastId: Int) {
+    override fun navigateToPodcastDetails(podcastId: String) {
         startActivity(activity?.let {
             PodCastDetailsActivity.newIntent(it, podcastId)
         })
@@ -174,11 +171,6 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
-    override fun downloadingAudio(data: ItemVO) {
-        items = data
-        checkPermission()
-    }
-
     override fun skip15SecBackward() {
         move15SecBackward()
     }
@@ -187,8 +179,17 @@ class HomeFragment : BaseFragment(), HomeView {
         move30SecForward()
     }
 
+    override fun displayPlayListInfoByFb(playlist: List<DataVO>) {
+        mPodCastAdapter.setNewData(playlist.toMutableList())
+    }
+
+    override fun downloadingAudioByFb(data: DataVO) {
+        items = data
+        checkPermission()
+    }
+
     private fun download() {
-        var request = DownloadManager.Request(Uri.parse(items?.data?.audio))
+        var request = DownloadManager.Request(Uri.parse(items?.audio))
             .setTitle("Podcast Audio")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
             .setAllowedOverMetered(true)
@@ -197,7 +198,7 @@ class HomeFragment : BaseFragment(), HomeView {
             activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         request.setDestinationInExternalPublicDir(
             Environment.DIRECTORY_DOWNLOADS,
-            "${items?.data?.title?.trim()?.substring(0, 15)}.mp3"
+            "${items?.title?.trim()?.substring(0, 15)}.mp3"
         );
         var myDownloadId = downloadManager.enqueue(request)
 

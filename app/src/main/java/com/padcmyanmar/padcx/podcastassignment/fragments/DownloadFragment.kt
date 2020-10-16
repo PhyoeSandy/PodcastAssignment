@@ -12,6 +12,7 @@ import com.padcmyanmar.padcx.podcastassignment.activities.PodCastDetailsActivity
 import com.padcmyanmar.padcx.podcastassignment.adapters.CategoryAdapter
 import com.padcmyanmar.padcx.podcastassignment.adapters.DownloadPodcastAdapter
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.DownloadPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl.DownloadPresenterImpl
@@ -87,7 +88,7 @@ class DownloadFragment : BaseFragment(), DownloadView {
         }*/
     }
 
-    override fun displayDownloadPodcastList(downloads: List<ItemVO>) {
+    override fun displayDownloadPodcastList(downloads: List<DataVO>) {
         mAdapter.setNewData(downloads.toMutableList())
     }
 
@@ -95,7 +96,7 @@ class DownloadFragment : BaseFragment(), DownloadView {
         mCategoryAdapter.setNewData(categories.toMutableList())
     }
 
-    override fun navigateToPodcastDetails(podcastId: Int) {
+    override fun navigateToPodcastDetails(podcastId: String) {
         startActivity(PodCastDetailsActivity.newIntent(requireContext(), podcastId))
     }
 

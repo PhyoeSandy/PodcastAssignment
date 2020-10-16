@@ -1,6 +1,6 @@
 package com.padcmyanmar.padcx.podcastassignment.delegates
 
-import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -8,6 +8,6 @@ import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
  */
 interface PodCastItemDelegate {
 
-    fun onTapPodcast(podcastId: Int)
-    fun onTapDownload(item: ItemVO)
+    fun onTapPodcast(podcastId: String)
+    fun onTapDownload(item: DataVO)
 }

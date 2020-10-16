@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.podcastassignment.data.model.FirebasePodcastModel
-import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.FirebasePodcastModelImpl
-import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
-import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.HomePresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.HomeView
 import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
@@ -28,7 +26,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         mView?.skip30SecForward()
     }
 
-    override fun saveDownloadItems(data: ItemVO) {
+    override fun saveDownloadItems(data: DataVO) {
         mPodcastModel.saveDownloadedItems(data)
     }
 
@@ -40,8 +38,8 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         Log.d("onTapReload", "onTapReload")
     }
 
-    override fun onTapDownload(item: ItemVO) {
-        mView?.downloadingAudio(item)
+    override fun onTapDownload(item: DataVO) {
+        mView?.downloadingAudioByFb(item)
     }
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
@@ -50,9 +48,9 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
         this.lifecycleOwner = lifecycleOwner
 
         mPodcastModel.getPlayListPodcasts().observe(lifecycleOwner,
-            Observer {
-                it?.let { mView?.displayPlayListInfo(it) }
-            })
+             Observer {
+                 it?.let { mView?.displayPlayListInfoByFb(it) }
+             })
 
         mPodcastModel.getRandomPodcast().observe(lifecycleOwner,
             Observer {
@@ -61,23 +59,22 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(), HomePresenter {
                     mView?.bindDescription(it.description)
                 }
             })
-
     }
 
     override fun onTapPlayButton() {
         mView?.playMusic()
     }
 
-    override fun onTapPodcast(podcastId: Int) {
+    override fun onTapPodcast(podcastId: String) {
         mView?.navigateToPodcastDetails(podcastId)
     }
 
     private fun loadDataFromAPI() {
-        mPodcastModel.getRandomPodcast({}, {
-            mView?.showErrorMessage(it)
-        })
-
-        mPodcastModel.getPlayListPodcasts({}, {
+        mPodcastModel.getPlayListPodcasts({
+           /* it?.let {
+                mView?.displayPlayListInfoByFb(it)
+            }*/
+        }, {
             mView?.showErrorMessage(it)
         })
     }

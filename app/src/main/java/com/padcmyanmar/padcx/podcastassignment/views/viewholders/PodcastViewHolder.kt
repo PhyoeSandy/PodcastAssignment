@@ -3,6 +3,7 @@ package com.padcmyanmar.padcx.podcastassignment.views.viewholders
 import android.annotation.SuppressLint
 import android.text.Html
 import android.view.View
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.delegates.PodCastItemDelegate
 import com.padcmyanmar.padcx.shared.extensions.convertTime
@@ -15,11 +16,11 @@ import kotlinx.android.synthetic.main.item_podcasts.view.*
  * on 8/22/2020.
  */
 class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) :
-    BaseViewHolder<ItemVO>(itemView) {
+    BaseViewHolder<DataVO>(itemView) {
     init {
         itemView.setOnClickListener {
             mData?.let {
-                delegate.onTapPodcast(it.id) // it.data.id
+                delegate.onTapPodcast(it.id)
             }
         }
 
@@ -31,11 +32,11 @@ class PodcastViewHolder(delegate: PodCastItemDelegate, itemView: View) :
     }
 
     @SuppressLint("NewApi")
-    override fun bindData(item: ItemVO) {
+    override fun bindData(item: DataVO) {
         mData = item
 
-        itemView.ivPodcast.loadImage(item.data.image)
-        itemView.tvTitle.text = Html.fromHtml(item.data.description, 0)
-        itemView.tvTime.text = convertTime(item.data.audio_length_sec)
+        itemView.ivPodcast.loadImage(item.image)
+        itemView.tvTitle.text = Html.fromHtml(item.description, 0)
+        itemView.tvTime.text = convertTime(item.audio_length_sec)
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.Html
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.delegates.PlayerViewItemDelegate
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 import com.padcmyanmar.padcx.shared.extensions.convertTime
@@ -35,9 +36,9 @@ class PlayerViewPod @JvmOverloads constructor(
     }
 
     @SuppressLint("NewApi")
-    fun setData(data: RandomPodcastVO) {
+    fun setData(data: DataVO) {
         ivPodcast.loadImage(data.image)
-        tvTitle.text = data.podcast.title
+        tvTitle.text = data.podcast?.title
         tvDescription.text = Html.fromHtml(data.description,0)
         tvTime.text = "00:00"
     }

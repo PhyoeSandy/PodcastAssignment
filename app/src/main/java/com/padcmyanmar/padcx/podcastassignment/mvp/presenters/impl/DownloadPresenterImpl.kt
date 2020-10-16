@@ -3,10 +3,8 @@ package com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.podcastassignment.data.model.FirebasePodcastModel
-import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.FirebasePodcastModelImpl
-import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
-import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.DownloadPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.DownloadView
 import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
@@ -18,20 +16,15 @@ import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
 class DownloadPresenterImpl : DownloadPresenter, AbstractBasePresenter<DownloadView>() {
     val mPodcastModel: FirebasePodcastModel = FirebasePodcastModelImpl
 
-    override fun onTapFindSomething() {
-        //mView?.displayCategoryList()
-    }
+    override fun onTapFindSomething() {}
 
-    override fun onTapReload() {
-        //mView?.displayDownloadPodcastList()
-    }
+    override fun onTapReload() {}
 
-    override fun onTapPodcast(podcastId: Int) {
+    override fun onTapPodcast(podcastId: String) {
         mView?.navigateToPodcastDetails(podcastId)
     }
 
-    override fun onTapDownload(item: ItemVO) {
-    }
+    override fun onTapDownload(item: DataVO) {}
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
         mPodcastModel.getDownloadsPodcasts().observe(lifecycleOwner,

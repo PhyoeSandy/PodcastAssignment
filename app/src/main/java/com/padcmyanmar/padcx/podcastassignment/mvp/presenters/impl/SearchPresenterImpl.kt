@@ -3,9 +3,7 @@ package com.padcmyanmar.padcx.podcastassignment.mvp.presenters.impl
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.podcastassignment.data.model.FirebasePodcastModel
-import com.padcmyanmar.padcx.podcastassignment.data.model.PodcastModel
 import com.padcmyanmar.padcx.podcastassignment.data.model.impls.FirebasePodcastModelImpl
-import com.padcmyanmar.padcx.podcastassignment.data.model.impls.PodcastModelImpl
 import com.padcmyanmar.padcx.podcastassignment.mvp.presenters.SearchPresenter
 import com.padcmyanmar.padcx.podcastassignment.mvp.views.SearchView
 import com.padcmyanmar.padcx.shared.mvp.presenters.AbstractBasePresenter
@@ -19,7 +17,14 @@ class SearchPresenterImpl : AbstractBasePresenter<SearchView>(), SearchPresenter
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
 
-        mPodcastModel.getCategoryList({}, {
+        mPodcastModel.getCategoryList({
+           /* it?.let {
+                mView?.displayCategoryList(it)
+                if (it.isNotEmpty()) {
+                    mView?.bindData(it[0])
+                }
+            }*/
+        }, {
             mView?.showErrorMessage(it)
         })
 

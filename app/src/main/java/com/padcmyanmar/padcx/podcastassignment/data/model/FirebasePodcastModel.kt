@@ -2,6 +2,7 @@ package com.padcmyanmar.padcx.podcastassignment.data.model
 
 import androidx.lifecycle.LiveData
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
 import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
 
@@ -11,23 +12,20 @@ import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
  */
 interface FirebasePodcastModel {
 
-    fun getRandomPodcast(onSuccess: (podcast: RandomPodcastVO) -> Unit, onFailure: (String) -> Unit)
-
     fun getCategoryList(onSuccess: (categoryList: List<CategoryVO>) -> Unit, onFailure: (String) -> Unit)
 
-    fun getPlayListPodcasts(onSuccess: (itemList: List<ItemVO>) -> Unit, onFailure: (String) -> Unit)
+    fun getPlayListPodcasts(onSuccess: (itemList: List<DataVO>) -> Unit, onFailure: (String) -> Unit)
 
-    // same as PodcastModel
-    fun getRandomPodcast() : LiveData<RandomPodcastVO>
+    fun getRandomPodcast() : LiveData<DataVO>
 
     fun getCategoryList() : LiveData<List<CategoryVO>>
 
-    fun getPlayListPodcasts() : LiveData<List<ItemVO>>
+    fun getPlayListPodcasts() : LiveData<List<DataVO>>
 
-    fun getDetailsPodcasts(id: Int) : LiveData<ItemVO>
+    fun getDetailsPodcasts(id: String) : LiveData<DataVO>
 
-    fun getDownloadsPodcasts() : LiveData<List<ItemVO>>
+    fun getDownloadsPodcasts() : LiveData<List<DataVO>>
 
-    fun saveDownloadedItems(data: ItemVO)
+    fun saveDownloadedItems(data: DataVO)
 
 }

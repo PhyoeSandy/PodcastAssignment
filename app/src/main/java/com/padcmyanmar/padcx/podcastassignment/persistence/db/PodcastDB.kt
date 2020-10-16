@@ -22,7 +22,7 @@ import com.padcmyanmar.padcx.podcastassignment.persistence.typeconverters.Podcas
 @Database(entities = [PodcastVO::class, CategoryVO::class,
     DataVO::class, ItemVO::class,
     RandomPodcastVO::class,
-    DetailsResponse::class], version = 19, exportSchema = false)
+    DetailsResponse::class], version = 21, exportSchema = false)
 @TypeConverters(PodcastTypeConverter::class, DataTypeConverter::class)
 abstract class PodcastDB : RoomDatabase() {
     companion object {
@@ -47,4 +47,5 @@ abstract class PodcastDB : RoomDatabase() {
     abstract fun podcastDao() : RandomPodcastDao
     abstract fun categoryDao() : CategoryDao
     abstract fun playlistDao() : PlaylistPodcastDao
+    abstract fun episodeDao() : EpisodeDao
 }

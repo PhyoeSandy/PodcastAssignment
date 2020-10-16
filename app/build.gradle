@@ -81,6 +81,9 @@ dependencies {
 
     implementation rootProject.ext.libraries.firebaseAnalytics
     implementation rootProject.ext.libraries.realtimedb
+    implementation rootProject.ext.libraries.cloudFirestore
+    implementation rootProject.ext.libraries.fbStorage
+
 
     testImplementation rootProject.ext.libraries.Junit
     testImplementation rootProject.ext.libraries.Ktx

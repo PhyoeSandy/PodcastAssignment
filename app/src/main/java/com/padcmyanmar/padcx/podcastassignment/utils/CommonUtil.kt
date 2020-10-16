@@ -23,5 +23,6 @@ const val SORT_VALUE = "recent_added_first"
 const val CATEGORIES_LIST = "genres"
 
 const val DETAILS_EPISODE = "episodes"
+const val EPISODE_ID = "9447ce07dd2345618054b04b733e4ad5"
 
 const val EM_NO_INTERNET_CONNECTION = "Internet may not be available."

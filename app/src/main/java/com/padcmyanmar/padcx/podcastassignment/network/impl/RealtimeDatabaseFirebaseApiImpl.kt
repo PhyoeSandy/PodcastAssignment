@@ -6,10 +6,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.padcmyanmar.padcx.podcastassignment.data.vos.CategoryVO
-import com.padcmyanmar.padcx.podcastassignment.data.vos.ItemVO
+import com.padcmyanmar.padcx.podcastassignment.data.vos.DataVO
 import com.padcmyanmar.padcx.podcastassignment.network.FirebaseApi
-import com.padcmyanmar.padcx.podcastassignment.network.responses.RandomPodcastVO
-import java.util.*
 
 /**
  * Created by Phyoe Sandy Soe Tun
@@ -18,34 +16,17 @@ import java.util.*
 object RealtimeDatabaseFirebaseApiImpl : FirebaseApi {
     private val database = Firebase.database.reference
 
-    override fun getRandomPodcast(
-        onSuccess: (podcast: RandomPodcastVO) -> Unit,
-        onFailure: (String) -> Unit
-    ) {
-        database.child("random_podcast").addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-                onFailure(error.message)
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.getValue(RandomPodcastVO::class.java)?.let{
-                    onSuccess(it)
-                }
-            }
-        })
-    }
-
     override fun getCategoryList(
         onSuccess: (categoryList: List<CategoryVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        database.child("category").addValueEventListener(object : ValueEventListener {
+        database.child("genres").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 onFailure(error.message)
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val categoryList: MutableList<CategoryVO> = arrayListOf()
+                val categoryList = arrayListOf<CategoryVO>()
                 snapshot.children.forEach { dataSnapshot ->
                     dataSnapshot.getValue(CategoryVO::class.java)?.let {
                         categoryList.add(it)
@@ -57,22 +38,22 @@ object RealtimeDatabaseFirebaseApiImpl : FirebaseApi {
     }
 
     override fun getPlayListPodcasts(
-        onSuccess: (itemList: List<ItemVO>) -> Unit,
+        onSuccess: (itemList: List<DataVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        database.child("playlist").addValueEventListener(object : ValueEventListener {
+        database.child("latest_episodes").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 onFailure(error.message)
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val categoryList: MutableList<ItemVO> = arrayListOf()
+                val playlist = arrayListOf<DataVO>()
                 snapshot.children.forEach { dataSnapshot ->
-                    dataSnapshot.getValue(ItemVO::class.java)?.let {
-                        categoryList.add(it)
+                    dataSnapshot.getValue(DataVO::class.java)?.let {
+                        playlist.add(it)
                     }
                 }
-                onSuccess(categoryList)
+                onSuccess(playlist)
             }
         })
     }
